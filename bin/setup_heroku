@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Setup heroku application remotes
+if heroku auth:whoami &> /dev/null; then
+  if heroku apps:info --app pl-saldosweb-staging &> /dev/null; then
+    git remote add staging git@heroku.com:pl-saldosweb-staging.git || true
+    git config heroku.remote staging
+    echo 'You are a collaborator on the "pl-saldosweb-staging" Heroku app'
+  else
+    echo 'Ask for access to the "pl-saldosweb-staging" Heroku app'
+  fi
+
+  if heroku apps:info --app pl-saldosweb-production &> /dev/null; then
+    git remote add production git@heroku.com:pl-saldosweb-production.git || true
+    echo 'You are a collaborator on the "pl-saldosweb-production" Heroku app'
+  else
+    echo 'Ask for access to the "pl-saldosweb-production" Heroku app'
+  fi
+else
+  echo 'You need to login to heroku. Run "heroku login"'
+fi
