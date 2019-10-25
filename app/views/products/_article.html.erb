@@ -1,0 +1,22 @@
+<div class=article_div>
+  <div class=pic_div>
+  <%= link_to product.get_image_url, target: '_blank' do%>
+    <%= image_tag product.get_image_url%>
+  <%end%>
+  </div>
+  <div class=data_div>
+    <h2><%=product.get_name%></h2>
+    <h3><%=product.code%></h3>
+    <% if product.second_class %>
+      <span class=second_class>SEGUNDA SELECCION</span>
+    <% end %>
+    <%= link_to('Ficha Técnica', product.datasheet_url, target: '_blank') if product.datasheet_url.present? %>
+    <h3>Stock: <%=product.stock_estimate%></h3>
+    <p><%=product.brief.to_s.html_safe%></p>
+    <div class=price_div>
+      <p class=discount> <%="#{product.discount}% DCTO"%></p>
+      <span class=base_price> <%=  number_to_currency(product.base_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
+      <span class=sale_price> <%=  number_to_currency(product.sale_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<div id=side_panel>
+  <%= render partial: 'side_panel', locals: { gr_sgs: @gr_sgs, current_gr: @current_gr } %>
+</div>
+
+<div id=products_panel>
+  <% @products.each do |product| %>
+    <%= render partial: 'article', locals: { product: product } %>
+  <% end %>
+</div>
+

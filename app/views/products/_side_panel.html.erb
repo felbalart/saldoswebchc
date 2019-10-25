@@ -1,0 +1,9 @@
+
+<h1>Categorías</h1>
+
+<%gr_sgs.each do |gr, sgs|%>
+<p class=group_link_paragraph><%=link_to gr, products_path(group: gr), class: 'group_link'%></p>
+<%sgs.each do |sg|%>
+<p><%=link_to sg, products_path(subgroup: sg), class: 'subgroup_link'%></p>
+<%end%>
+<%end%>

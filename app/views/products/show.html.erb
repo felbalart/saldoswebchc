@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Brief:</strong>
+  <%= @product.brief %>
+</p>
+
+<p>
+  <strong>Base price:</strong>
+  <%= @product.base_price %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @product.discount %>
+</p>
+
+<p>
+  <strong>Sale price:</strong>
+  <%= @product.sale_price %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @product.stock %>
+</p>
+
+<p>
+  <strong>Second class:</strong>
+  <%= @product.second_class %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @product.group %>
+</p>
+
+<p>
+  <strong>Subgroup:</strong>
+  <%= @product.subgroup %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @product.priority %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
