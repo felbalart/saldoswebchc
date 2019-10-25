@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  default_scope { order('priority desc') }
+  default_scope { where('priority > 0').order('priority desc') }
 
 
   def self.search(search)
