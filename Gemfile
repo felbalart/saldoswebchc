@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'aws-sdk', '~> 3'
+# gem 'aws-sdk', '~> 3'
 gem 'bootsnap', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'enumerize'
