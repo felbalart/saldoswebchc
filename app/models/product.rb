@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
   def self.search(search)
     if search
-      where('name LIKE ?', "%#{search}%")
+      where("LOWER(name) like ? or LOWER(code) like ?", "%#{search.downcase}%", "%#{search.downcase}%")
     else
       all
     end
@@ -16,7 +16,7 @@ class Product < ApplicationRecord
   end
 
   def get_name
-    name.gsub('Comercial', 'CM').gsub('comercial', 'CM')
+    name.gsub('Comercial', 'CM').gsub('comercial', 'CM').gsub('COMERCIAL', 'CM')
   end
 
 
@@ -32,6 +32,43 @@ class Product < ApplicationRecord
     else
     "Más de #{(stock + 1) / 1000 * 1000} UN"
     end
+  end
+
+
+  def self.gr_sgs
+    gsg_data =
+    {
+      'Acces. y freg' =>['Acc. Hab', 'Acc. Inst', 'Lavaplatos'],
+      'Complementos y otros' => ['Divisiones', 'Otros'],
+      'Griferia' => ['Grif cocina','Grif habitacional', 'Grif institucional'],
+      'Loza' => ['Lavamanos', 'Sanitarios', 'Urinarios'],
+      'Prod. grandes' =>
+      ['Bañera, hidro, faldón',
+      'Cabinas, spas, saunas',
+      'Espejos',
+      'Mamparas',
+      'Muebles',
+      'Platos de ducha'],
+      'Repuestos' => [],
+      # Rep. hab e inst
+      'Revestimientos' =>
+      ['Adhesiv., insert., facha, otros rev',
+      'Cerámica de muro',
+      'Fotolaminados',
+      'Porcelanato, gres, cer piso']
+    }
+
+    gsg_data.map { |k,v| ["#{k} (#{g_count(k)})", v.map {|sg| "#{sg} (#{sg_count(sg)})"}] }
+  end
+
+  def self.g_count(g)
+    @gdata ||= Product.pluck(:group).group_by(&:to_s).map { |k,v| [k, v.count] }.to_h
+    @gdata[g]
+  end
+
+  def self.sg_count(sg)
+    @sgdata ||= Product.pluck(:subgroup).group_by(&:to_s).map { |k,v| [k, v.count] }.to_h
+    @sgdata[sg]
   end
 end
 

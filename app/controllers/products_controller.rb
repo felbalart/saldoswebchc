@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
     else
       Product.order('priority desc').first(50)
     end
-    @gr_sgs = gr_sgs
   end
 
   # GET /products/1
@@ -81,28 +80,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :brief, :base_price, :discount, :sale_price, :stock, :second_class, :group, :subgroup, :priority)
     end
-
-    def gr_sgs
-      {
-        'Acces. y freg' =>['Acc. Hab', 'Acc. Inst', 'Lavaplatos'],
-        'Complementos y otros' => ['Divisiones', 'Otros'],
-        'Griferia' => ['Grif cocina','Grif habitacional', 'Grif institucional'],
-        'Loza' => ['Lavamanos', 'Sanitarios', 'Urinarios'],
-        'Prod. grandes' =>
-        ['Bañera, hidro, faldón',
-        'Cabinas, spas, saunas',
-        'Espejos',
-        'Mamparas',
-        'Muebles',
-        'Platos de ducha'],
-        'Repuestos' => [],
-        # Rep. hab e inst
-        'Revestimientos' =>
-        ['Adhesiv., insert., facha, otros rev',
-        'Cerámica de muro',
-        'Fotolaminados',
-        'Porcelanato, gres, cer piso']
-    }
-  end
 end
 

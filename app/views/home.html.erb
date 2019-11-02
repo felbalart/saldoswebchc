@@ -1,0 +1,17 @@
+<div id=side_panel>
+  <%= render partial: 'products/side_panel', locals: { gr_sgs: Product.gr_sgs, current_gr: nil } %>
+</div>
+
+<div id=infopanel>
+  <h2>INFORMACIÓN IMPORTANTE</h2>
+  <p>
+    - Consultas y compras a <a href="mailto:saldos@chc.cl">saldos@chc.cl</a>
+  </p>
+  <p>- Precios publicados NETO (sin IVA)</p>
+  <p>- Stock puede estar desfasado hasta 7 días.  Consulte por productos con bajo stock</p>
+  <p>
+  - No incluye despacho. Puede retirar gratuitamente en <a href='https://goo.gl/maps/VMuc8HiM135jaM1H6' target='_blank'>CD CHC (comuna de Lampa)</a>, o cotizar costo de despacho por comuna:
+  </p>
+  <%=select_tag "commune", options_from_collection_for_select(DeliveryCostService.communes, :to_s, :to_s) %>
+  <span id=cost_result></span>
+</div>

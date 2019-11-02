@@ -11,7 +11,9 @@
 
   <body>
   <div id="header">
-    <%=image_tag 'https://chc.cl/wp-content/themes/chc-2017/images/logo-chc.svg' %>
+    <%= link_to '/' do %>
+      <%= image_tag('logo_chc_white') %>
+    <%end%>
     <span id="page_title">CATÁLOGO PRODUCTOS SALDOS DE BODEGA</span>
     <div id="search_container">
       <%= form_tag products_path, :method => 'get' do %>

@@ -14,3 +14,24 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require jquery
+
+
+$(function () {
+  $('#commune').change(function () {
+    commune = $('#commune').val();
+    $.ajax({
+      type: "GET",
+      dataType: "script",
+      url: 'delivery_cost',
+      data: {
+      commune: commune
+      },
+      complete: function(data, textStatus, jqXHR){
+        if((data === undefined) || (data.responseText === undefined)) { return; }
+        resp = JSON.parse(data.responseText);
+        $('#cost_result').text('Costo de despacho a ' + resp.commune + ': ' + resp.cost + ' + IVA');
+      }
+  });
+  });
+});
