@@ -9,6 +9,7 @@
     <h3><%=product.code%></h3>
     <% if product.second_class %>
       <span class=second_class>SEGUNDA SELECCION</span>
+      <br/>
     <% end %>
     <%= link_to('Ficha Técnica', product.datasheet_url, target: '_blank') if product.datasheet_url.present? %>
     <h3>Stock: <%=product.stock_estimate%></h3>

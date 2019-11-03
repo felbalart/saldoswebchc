@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  background-color: #f2f2f2 !important;
+  background-color: #ffffff !important;
 }
 
 #header {
@@ -43,7 +43,7 @@ body {
   min-height: 300px;
   width: 100%;
   display:inline-block;
-  background-color: #e6e6e6;
+  background-color: #F1F5F6;
   margin-bottom: 10px;
   padding: 30px 10px 0 30px;
 }
@@ -93,7 +93,7 @@ img {
   float: left;
   max-width: 300px;
   height: 100%;
-  background-color: #d9d9d9;
+  background-color: #ecf0f1;
   padding-left: 10px;
   padding-top: 30px;
   p {
@@ -104,6 +104,14 @@ img {
   padding-top: 10px;
   }
 
+}
+
+a {
+  color: #333f48 !important;
+
+  &:hover {
+    background-color: #d3dcde !important;
+  }
 }
 
 .group_link {

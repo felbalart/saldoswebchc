@@ -38,8 +38,6 @@ class Product < ApplicationRecord
   def self.gr_sgs
     gsg_data =
     {
-      'Acces. y freg' =>['Acc. Hab', 'Acc. Inst', 'Lavaplatos'],
-      'Complementos y otros' => ['Divisiones', 'Otros'],
       'Griferia' => ['Grif cocina','Grif habitacional', 'Grif institucional'],
       'Loza' => ['Lavamanos', 'Sanitarios', 'Urinarios'],
       'Prod. grandes' =>
@@ -49,13 +47,15 @@ class Product < ApplicationRecord
       'Mamparas',
       'Muebles',
       'Platos de ducha'],
+      'Revestimientos' =>
+      ['Cerámica de muro',
+      'Fotolaminados',
+      'Porcelanato, gres, cer piso'],
+      'Acces. y freg' =>['Acc. Hab', 'Acc. Inst', 'Lavaplatos'],
       'Repuestos' => [],
       # Rep. hab e inst
-      'Revestimientos' =>
-      ['Adhesiv., insert., facha, otros rev',
-      'Cerámica de muro',
-      'Fotolaminados',
-      'Porcelanato, gres, cer piso']
+      'Complementos y otros' => []
+      # ['Divisiones', 'Otros'],
     }
 
     gsg_data.map { |k,v| ["#{k} (#{g_count(k)})", v.map {|sg| "#{sg} (#{sg_count(sg)})"}] }
