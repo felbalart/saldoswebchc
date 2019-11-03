@@ -12,7 +12,8 @@ class Product < ApplicationRecord
 
   def get_image_url
     return '/no_pic.png' unless image_url.present?
-    image_url
+    return ('https://chc.cl/' + image_url) unless image_url.include?('http')
+    image_url.split(' | ').first
   end
 
   def get_name
