@@ -31,7 +31,7 @@ class Product < ApplicationRecord
     elsif stock < 1000
       "Más de #{(stock + 1) / 100 * 100} UN"
     else
-    "Más de #{(stock + 1) / 1000 * 1000} UN"
+    "Más de 1000 UN"
     end
   end
 
