@@ -46,10 +46,13 @@ body {
   background-color: #F1F5F6;
   margin-bottom: 10px;
   padding: 30px 10px 0 30px;
+  border-radius: 25px;
+
 }
 
 .data_div {
-  padding-top: 20px;
+  padding-top: 10px;
+  display: table;
 
   .hidden_id {
     color: #F1F5F6;
@@ -96,7 +99,7 @@ img {
 
 #side_panel {
   position: fixed;
-  top: 30px;
+  top: 45px;
   left: 0;
   float: left;
   max-width: 300px;

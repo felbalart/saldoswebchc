@@ -1,3 +1,4 @@
+<p><%=link_to 'Recomendados! (50)', products_path, class: 'group_link'%></p>
 <%gr_sgs.each do |gr, sgs|%>
 <p class=group_link_paragraph><%=link_to gr, products_path(group: gr[0..gr.index('(') - 2]), class: 'group_link'%></p>
 <%sgs.each do |sg|%>
