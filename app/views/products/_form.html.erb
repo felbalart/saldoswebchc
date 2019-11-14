@@ -1,3 +1,4 @@
+<div class=product_form>
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
@@ -10,10 +11,15 @@
       </ul>
     </div>
   <% end %>
-
+  <h2><%=product.code%></h2>
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.check_box :active %>
   </div>
 
   <div class="field">
@@ -65,3 +71,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>

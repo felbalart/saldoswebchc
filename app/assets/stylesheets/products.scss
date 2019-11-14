@@ -50,6 +50,14 @@ body {
 
 .data_div {
   padding-top: 20px;
+
+  .hidden_id {
+    color: #F1F5F6;
+  }
+
+  .red_text {
+    color: red;
+  }
 }
 
 .pic_div {
@@ -129,3 +137,15 @@ a {
   float: left;
   margin: 50px calc(80px + 10%);
 }
+
+
+.product_form, .show_container {
+  margin-top: 100px;
+
+  .field input {
+    width: 600px;
+  }
+}
+
+
+

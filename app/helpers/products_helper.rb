@@ -19,6 +19,8 @@
 #  brand         :string
 #  image_url     :string
 #  datasheet_url :string
+#  hidden_msg    :string
+#  active        :boolean
 #
 
 module ProductsHelper

@@ -34,4 +34,21 @@ $(function () {
       }
   });
   });
+  $('.title_edit_si').click(function () {
+      id = event.target.id
+      $.ajax({
+      type: "POST",
+      dataType: "script",
+      url: 'hide',
+      data: {
+        id: id
+      },
+    complete: function(data, textStatus, jqXHR){
+      debugger;
+      result = JSON.parse(data.responseText);
+      alert(result.text);
+      $('#'+ result.product_id +'.title_edit_si').addClass('red_text');
+    }
+  });
+  });
 });

@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  default_scope { where('priority > 0').order('priority desc') }
+  default_scope { where(active: true).order('priority desc') }
 
 
   def self.search(search)
@@ -94,4 +94,6 @@ end
 #  brand         :string
 #  image_url     :string
 #  datasheet_url :string
+#  hidden_msg    :string
+#  active        :boolean
 #

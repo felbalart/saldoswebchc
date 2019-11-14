@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: :hide
 
   # GET /products
   # GET /products.json
   def index
+    @edit_mode = 'si' if (params[:e] == 'si')
     @products =
     if params[:search]
       Product.search(params[:search])
@@ -29,6 +31,23 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
   end
+
+  def hide
+    id = params[:id]
+    pr = Product.find_by(id: id)
+    result = "OK, hidding...#{pr&.code} #{pr&.name}"
+    if pr.blank?
+      result = 'ERROR unable to find product with id ' + id
+    elsif !pr.active
+      result = 'ERROR already not active' 
+    else
+      pr.active = false
+      saved = pr.save
+      result = 'ERROR unable to save' unless saved
+    end
+    render json: { text: result, product_id: id }
+  end
+
 
   # POST /products
   # POST /products.json
@@ -73,12 +92,12 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.unscoped.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :brief, :base_price, :discount, :sale_price, :stock, :second_class, :group, :subgroup, :priority)
+      params.require(:product).permit(:name, :brief, :base_price, :discount, :sale_price, :stock, :second_class, :group, :subgroup, :priority, :hidden_msg, :active)
     end
 end
 

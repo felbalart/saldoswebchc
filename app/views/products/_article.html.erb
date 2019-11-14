@@ -5,8 +5,12 @@
   <%end%>
   </div>
   <div class=data_div>
-    <h2><%=product.get_name%></h2>
-    <h3><%=product.code%></h3>
+    <h2 id=<%="#{product.id}"%> class=title_edit_<%=@edit_mode%>>
+      <%=product.get_name%>
+    </h2>
+    <h3>
+      <%=product.code%><span class=hidden_id><%=" id #{product.id}"%></span>
+    </h3>
     <% if product.second_class %>
       <span class=second_class>SEGUNDA SELECCION</span>
       <br/>
