@@ -19,9 +19,9 @@
     <h3>Stock: <%=product.stock_estimate%></h3>
     <p><%=product.brief.to_s.html_safe%></p>
     <div class=price_div>
-      <p class=discount> <%="#{product.discount}% DCTO"%></p>
-      <span class=base_price> <%=  number_to_currency(product.base_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
-      <span class=sale_price> <%=  number_to_currency(product.sale_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
+      <p class=discount> <%="#{product.get_discount}% DCTO"%></p>
+      <span class=base_price> <%=  number_to_currency(product.get_base_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
+      <span class=sale_price> <%=  number_to_currency(product.get_sale_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
     </div>
   </div>
 </div>

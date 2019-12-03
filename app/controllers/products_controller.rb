@@ -10,11 +10,11 @@ class ProductsController < ApplicationController
     if params[:search]
       Product.search(params[:search])
     elsif params[:group]
-      Product.where(group: params[:group])
+      Product.active.where(group: params[:group])
     elsif params[:subgroup]
-      Product.where(subgroup: params[:subgroup])
+      Product.active.where(subgroup: params[:subgroup])
     else
-      Product.order('priority desc').first(50)
+      Product.active.first(50)
     end
   end
 
@@ -89,10 +89,30 @@ class ProductsController < ApplicationController
     end
   end
 
+  def add_component
+    father = Product.find(params[:father_id])
+    child = Product.find(params[:child_id])
+    children = father.components.to_a
+    raise 'Already present' if children.include? child
+    father.components << child
+    father.save!
+    render plain: 'Actualizado: Agregado'
+  end
+
+  def remove_component
+    father = Product.find(params[:father_id])
+    child = Product.find(params[:child_id])
+    children = father.components.to_a
+    raise 'Component not found' unless children.include? child
+    father.components.delete(child)
+    father.save!
+    render plain: 'Actualizado: Removido'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.unscoped.find(params[:id])
+      @product = Product.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

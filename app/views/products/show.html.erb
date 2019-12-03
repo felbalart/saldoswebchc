@@ -70,6 +70,18 @@
   <%= @product.hidden_msg %>
 </p>
 
+<p>
+  <strong>Components:</strong>
+  <%= @product.components.map(&:full_display_name) %>
+</p>
+
+<p>
+  <strong>Fathers:</strong>
+  <%= @product.fathers.map(&:full_display_name)%>
+</p>
+
+
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
 </div>
