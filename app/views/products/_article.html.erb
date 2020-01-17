@@ -8,14 +8,16 @@
     <h2 id=<%="#{product.id}"%> class=title_edit_<%=@edit_mode%>>
       <%=product.get_name%>
     </h2>
-    <h3>
-      <%=product.code%><span class=hidden_id><%=" id #{product.id}"%></span>
-    </h3>
+    <%=image_tag(product.brand_logo_url, class: :logo_img, onerror: "this.style.display='none'")%>
     <% if product.second_class %>
       <span class=second_class>SEGUNDA SELECCION</span>
       <br/>
     <% end %>
+    <p>
+    <span class='product_code'><%=product.code%></span>
     <%= link_to('Ficha Técnica', product.datasheet_url, target: '_blank') if product.datasheet_url.present? %>
+    <span class=hidden_id><%=" id #{product.id}"%></span>
+    </p>
     <h3>Stock: <%=product.stock_estimate%></h3>
     <p><%=product.brief.to_s.html_safe%></p>
     <div class=price_div>

@@ -134,6 +134,11 @@ class Product < ApplicationRecord
   def fathers
     Product.find(ActiveRecord::Base.connection.execute("select father_id from components where child_id = #{id}").values.flatten)
   end
+
+  def brand_logo_url
+    return if brand.blank?
+    '/logos/' + brand.gsub(' ','_').gsub("'",'_').delete('.') + '.jpg'
+  end
 end
 
 # == Schema Information
