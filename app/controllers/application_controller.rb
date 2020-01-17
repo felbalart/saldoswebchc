@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::NumberHelper
+
   def home
     render '/home'
   end

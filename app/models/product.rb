@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :tags
   has_and_belongs_to_many(:products,
   join_table: :components,
   foreign_key: :father_id,
@@ -18,7 +19,16 @@ class Product < ApplicationRecord
     end
   end
 
-  def self.gr_sgs
+  def self.with_tag(tag)
+    return Product.active unless tag
+    Product.includes(:tags).active.where(tags: {word: tag})
+  end
+
+  def self.gr_sgs(tag_word = nil)
+    puts 'BEGIN DEBUG'
+    puts tag_word.class
+    puts tag_word
+    puts 'END DEBUG'
     gsg_data =
     {
       'Griferia' => ['Grif cocina','Grif habitacional', 'Grif institucional'],
@@ -41,14 +51,19 @@ class Product < ApplicationRecord
       # ['Divisiones', 'Otros'],
     }
 
-    gsg_data.map { |k,v| ["#{k} (#{g_count(k)})", v.map {|sg| "#{sg} (#{sg_count(sg)})"}] }
+    prs = with_tag(tag_word)
+    gs_count_hash = prs.group_by(&:group).map {|k,v| [k, v.count]}.to_h
+    sgs_count_hash = prs.group_by(&:subgroup).map {|k,v| [k, v.count]}.to_h
+
+    gsg_data.map { |k,v| ["#{k} (#{gs_count_hash[k].to_i})", v.map {|sg| "#{sg} (#{sgs_count_hash[sg].to_i})"}] }
   end
 
+  # deprecated
   def self.g_count(g)
     @gdata ||= Product.active.pluck(:group).group_by(&:to_s).map { |k,v| [k, v.count] }.to_h
     @gdata[g]
   end
-
+  # deprecated
   def self.sg_count(sg)
     @sgdata ||= Product.active.pluck(:subgroup).group_by(&:to_s).map { |k,v| [k, v.count] }.to_h
     @sgdata[sg]
@@ -102,6 +117,10 @@ class Product < ApplicationRecord
     else
     "Más de 1000 UN"
     end
+  end
+
+  def tag_words
+    tags.map(&:word)
   end
 
   def is_father?

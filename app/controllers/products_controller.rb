@@ -5,16 +5,18 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    @tag = params[:tag]
     @edit_mode = 'si' if (params[:e] == 'si')
+    @products = Product.with_tag(@tag)
     @products =
     if params[:search]
-      Product.search(params[:search])
+      @products.search(params[:search])
     elsif params[:group]
-      Product.active.where(group: params[:group])
+      @products.where(group: params[:group])
     elsif params[:subgroup]
-      Product.active.where(subgroup: params[:subgroup])
+      @products.where(subgroup: params[:subgroup])
     else
-      Product.active.first(50)
+      @products.first(50)
     end
   end
 
@@ -108,6 +110,14 @@ class ProductsController < ApplicationController
     father.save!
     render plain: 'Actualizado: Removido'
   end
+
+  def tag_index
+    @tag = params[:tag]
+    @products = Tag.where(word: @tag).map(&:product)
+    raise ActionController::RoutingError.new('Not Found') if @products.empty?
+    render :index
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

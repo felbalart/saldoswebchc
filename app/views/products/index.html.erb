@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div id=side_panel>
-  <%= render partial: 'side_panel', locals: { gr_sgs: Product.gr_sgs, current_gr: @current_gr } %>
+  <%= render partial: 'side_panel', locals: { gr_sgs: Product.gr_sgs(@tag), current_gr: @current_gr } %>
 </div>
 
 <div id=products_panel>

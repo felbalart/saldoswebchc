@@ -14,7 +14,13 @@
     <%= link_to '/' do %>
       <%= image_tag('/logo_chc_white.jpg') %>
     <%end%>
-    <span id="page_title">CATÁLOGO PRODUCTOS SALDOS DE BODEGA 2019</span>
+    <span id="page_title">
+    <%if @tag.blank?%>
+      CATÁLOGO PRODUCTOS SALDOS DE BODEGA 2020
+    <%else%>
+      SALDOS | SELECCIÓN: <%=@tag.upcase%>
+    <%end%>
+    </span>
     <div id="search_container">
       <%= form_tag products_path, :method => 'get' do %>
         <%= text_field_tag :search, params[:search] %>

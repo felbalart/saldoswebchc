@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_014158) do
+ActiveRecord::Schema.define(version: 2020_01_17_005009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,5 +62,14 @@ ActiveRecord::Schema.define(version: 2019_12_03_014158) do
     t.boolean "active"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.bigint "product_id"
+    t.string "word"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_tags_on_product_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "tags", "products"
 end
