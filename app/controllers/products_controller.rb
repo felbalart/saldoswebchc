@@ -5,9 +5,9 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @tag = params[:tag]
+    @tag =
     @edit_mode = 'si' if (params[:e] == 'si')
-    @products = Product.with_tag(@tag)
+    @products = Product.with_tag(params[:tag])
     @products =
     if params[:search]
       @products.search(params[:search])
