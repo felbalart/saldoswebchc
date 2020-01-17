@@ -137,7 +137,7 @@ class Product < ApplicationRecord
 
   def brand_logo_url
     return if brand.blank?
-    '/logos/' + brand.gsub(' ','_').gsub("'",'_').delete('.') + '.jpg'
+    '/logos/' + brand.downcase.gsub(' ','_').gsub("'",'_').delete('.') + '.jpg'
   end
 end
 
