@@ -1,7 +1,7 @@
-<p><%=link_to 'Recomendados!', products_path(tag: @tag), class: 'group_link'%></p>
+<p><%=link_to 'Recomendados!', products_tag_path(tag: @tag || 'products'), class: 'group_link'%></p>
 <%gr_sgs.each do |gr, sgs|%>
-<p class=group_link_paragraph><%=link_to gr, products_path(tag: @tag, group: gr[0..gr.index('(') - 2]), class: 'group_link'%></p>
+<p class=group_link_paragraph><%=link_to gr, products_tag_path(tag: @tag || 'products', group: gr[0..gr.index('(') - 2]), class: 'group_link'%></p>
 <%sgs.each do |sg|%>
-<p><%=link_to sg, products_path(tag: @tag, subgroup: sg[0..sg.index('(') - 2]), class: 'subgroup_link'%></p>
+<p><%=link_to sg, products_tag_path(tag: @tag || 'products', subgroup: sg[0..sg.index('(') - 2]), class: 'subgroup_link'%></p>
 <%end%>
 <%end%>

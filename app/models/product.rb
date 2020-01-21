@@ -20,15 +20,11 @@ class Product < ApplicationRecord
   end
 
   def self.with_tag(tag)
-    return Product.active unless tag
+    return Product.active if tag.blank? || tag == 'products'
     Product.includes(:tags).active.where(tags: {word: tag})
   end
 
   def self.gr_sgs(tag_word = nil)
-    puts 'BEGIN DEBUG'
-    puts tag_word.class
-    puts tag_word
-    puts 'END DEBUG'
     gsg_data =
     {
       'Griferia' => ['Grif cocina','Grif habitacional', 'Grif institucional'],

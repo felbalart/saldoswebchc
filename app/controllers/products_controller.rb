@@ -5,9 +5,10 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @tag =
+    @tag = params[:tag].blank? ? 'products' : params[:tag]
+    @products = Product.with_tag(@tag)
+    raise ActionController::RoutingError.new('Not Found') if @products.empty?
     @edit_mode = 'si' if (params[:e] == 'si')
-    @products = Product.with_tag(params[:tag])
     @products =
     if params[:search]
       @products.search(params[:search])
@@ -111,6 +112,7 @@ class ProductsController < ApplicationController
     render plain: 'Actualizado: Removido'
   end
 
+  # deprecated
   def tag_index
     @tag = params[:tag]
     @products = Tag.where(word: @tag).map(&:product)
