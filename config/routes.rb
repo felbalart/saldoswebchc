@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root to: 'application#home'
+
+  get 'fork', to: 'fork#index'
+
   get 'delivery_cost', to: 'application#delivery_cost'
   post 'hide', to: 'products#hide'
   get 'add_component', to: 'products#add_component'
