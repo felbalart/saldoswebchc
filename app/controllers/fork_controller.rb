@@ -6,6 +6,7 @@ class ForkController < ApplicationController
   if @input.present?
     @rut = @input.delete(".").split("-").first
     @worker = Worker.find_by(rut: @rut)
+    @worker = Worker.find_by(rut: @rut[0..-2]) if @worker.nil? && @rut
     if @worker.nil?
       @msg = 'No se encuentra el rut ingresado'
       @name = ''
