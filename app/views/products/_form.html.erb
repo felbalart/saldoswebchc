@@ -13,6 +13,10 @@
   <% end %>
   <h2><%=product.code%></h2>
   <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </div>
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
