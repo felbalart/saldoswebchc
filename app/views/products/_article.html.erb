@@ -5,25 +5,30 @@
   <%end%>
   </div>
   <div class=data_div>
-    <h2 id=<%="#{product.id}"%> class=title_edit_<%=@edit_mode%>>
+    <h2 id=<%="#{product.id}"%> class='product_name title_edit_<%=@edit_mode%>'>
       <%=product.get_name%>
     </h2>
-    <%=image_tag(product.brand_logo_url, class: :logo_img, onerror: "this.style.display='none'")%>
-    <% if product.second_class %>
-      <div class=second_class>SEGUNDA SELECCION</div>
-      <br/>
-    <% end %>
-    <p>
-    <span class='product_code'><%=product.code%></span>
-    <%= link_to('Ficha Técnica', product.datasheet_url, target: '_blank') if product.datasheet_url.present? %>
-    <span class=hidden_id><%=" id #{product.id}"%></span>
-    </p>
-    <h3>Stock: <%=product.stock_estimate%></h3>
-    <p><%=product.brief.to_s.html_safe%></p>
-    <div class=price_div>
-      <p class=discount> <%="#{product.get_discount}% DCTO"%></p>
-      <span class=base_price>C1 NETO: <%=  number_to_currency(product.get_base_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
-      <span class=sale_price>OFERTA NETO: <%= number_to_currency(product.get_sale_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
+    <div class=specs_div>
+      <%=image_tag(product.brand_logo_url, class: :logo_img, onerror: "this.style.display='none'")%>
+      <% if product.second_class %>
+        <div class=second_class>SEGUNDA SELECCION</div>
+        <br/>
+      <% end %>
+      <p>
+      <span class='product_code'><%=product.code%></span>
+      <%= link_to('Ficha Técnica', product.datasheet_url, target: '_blank') if product.datasheet_url.present? %>
+      <span class=hidden_id><%=" id #{product.id}"%></span>
+      </p>
+      <h3>Stock: <%=product.stock_estimate%></h3>
+      <p><%=product.brief.to_s.html_safe%></p>
+      <div class=price_div>
+        <p class=discount> <%="#{product.get_discount}% DCTO"%></p>
+        <span class=base_price>C1 NETO: <%=  number_to_currency(product.get_base_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
+        <span class=sale_price>OFERTA NETO: <%= number_to_currency(product.get_sale_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
+        </div>
+    </div>
+    <div class=substitute_div>
+      <%= render partial: 'subs_table', locals: { product: product } %>
     </div>
   </div>
 </div>

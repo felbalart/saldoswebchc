@@ -75,6 +75,16 @@ img {
   }
 }
 
+.specs_div {
+  float: left;
+}
+
+.substitute_div {
+  float: left;
+}
+
+
+
 .product_code {
   font-weight: bold;
 }
@@ -168,3 +178,11 @@ a {
 }
 
 
+.subs_table {
+  background-color: #ffffff;
+  border: 1px solid black;
+
+  th, tr, td {
+    border-bottom: 1px solid #ddd;
+  }
+}

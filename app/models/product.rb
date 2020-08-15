@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_many :tags
+  has_many :substitutes
   has_and_belongs_to_many(:products,
   join_table: :components,
   foreign_key: :father_id,
@@ -134,6 +135,13 @@ class Product < ApplicationRecord
   def brand_logo_url
     return '/no.jpg' if brand.blank?
     '/logos/' + brand.downcase.gsub(' ','_').gsub("'",'_').delete('.') + '.jpg'
+  end
+
+  def subs_or_4
+    subs = substitutes.to_a
+    dummys_to_add = 4 - subs.count
+    dummys_to_add = 1 if dummys_to_add < 1
+    subs += ([substitutes.new(name: '<sustituto>', author: '<autor>')]*dummys_to_add)
   end
 end
 
