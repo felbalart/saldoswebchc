@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token, only: :hide
+  skip_before_action :verify_authenticity_token, only: [:hide, :add_substitute]
 
   # GET /products
   # GET /products.json
@@ -118,6 +118,17 @@ class ProductsController < ApplicationController
     @products = Tag.where(word: @tag).map(&:product)
     raise ActionController::RoutingError.new('Not Found') if @products.empty?
     render :index
+  end
+
+  def add_substitute
+    binding.pry
+    sub_name = params['substitute_name']
+    sub_author = params['substitute_author']
+    @product = Product.find(params['product_id'].to_i)
+    if sub_name.to_s.length < 9 || sub_author.to_s.length < 6
+      raise ActionController::BadRequest.new('Invalid Substitute Data')
+    end
+    @substitute = @product.substitutes.create!(name: sub_name, author: sub_author, active: true)
   end
 
 

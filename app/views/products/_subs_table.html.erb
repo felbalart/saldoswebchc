@@ -1,20 +1,11 @@
 <table class=subs_table style="width:100%">
 	<th>Puede Sustituir A...</th><th>Propuesto Por:</th>
 <%product.subs_or_4.each do |sub| %>	
-  <tr>
+  <tr id=pr_<%=product.id%>_sub_<%=sub.id%>_row>
     <td><%=sub.name%></td>
     <td><%=sub.author%></td>
   </tr>
 <%end%>  
 </table>
 
-<button type="button">+ Proponer Sustituto</button>
-<a href="#" id="link">Click me!</a>
-
-<script>
-$(function() {
-  $('#link').click(function() {
-    bootbox.alert("Hello world!");  
-  })
-})
-</script>
+<button type="button" onclick="addSubstitute(<%=product.id%>);">+ Proponer Sustituto</button>

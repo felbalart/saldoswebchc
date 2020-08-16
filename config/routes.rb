@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get 'remove_component', to: 'products#remove_component'
   resources :products
   get '/*tag', to: 'products#index', as: 'products_tag'
+  post 'substitute', to: 'products#add_substitute'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,5 @@
+$('.substitute_div#subs_pr_<%=@product.id%>').html(
+  '<%= escape_javascript(render partial: 'subs_table', locals: { product: @product }) %>'
+);
+
+$('#pr_<%=@product.id%>_sub_<%=@substitute.id%>_row').effect('highlight', {}, 3000);

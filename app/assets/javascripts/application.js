@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery
-
+//= require jquery-ui
 
 $(function () {
   $('#commune').change(function () {

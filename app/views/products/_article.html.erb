@@ -27,7 +27,7 @@
         <span class=sale_price>OFERTA NETO: <%= number_to_currency(product.get_sale_price, :unit => "$ ", :separator => ",", :delimiter => ".") %></span>
         </div>
     </div>
-    <div class=substitute_div>
+    <div class=substitute_div id=subs_pr_<%=product.id%>>
       <%= render partial: 'subs_table', locals: { product: product } %>
     </div>
   </div>
