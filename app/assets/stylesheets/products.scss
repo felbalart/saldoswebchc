@@ -81,6 +81,11 @@ img {
 
 .substitute_div {
   float: left;
+  margin-left: 5px;
+
+  button {
+    margin: 7px 0 7px 0;
+  }
 }
 
 
@@ -181,6 +186,7 @@ a {
 .subs_table {
   background-color: #ffffff;
   border: 1px solid black;
+  min-width: 500px;
 
   th, tr, td {
     border-bottom: 1px solid #ddd;

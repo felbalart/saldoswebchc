@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::NumberHelper
+  before_action :set_mode
+
+  def set_mode
+  	@internal_mode = request.base_url.include?('giro.chc.cl') || request.base_url.include?('localhost')
+  end
 
   def home
     render '/home'

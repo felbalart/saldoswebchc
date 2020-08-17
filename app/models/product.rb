@@ -141,7 +141,7 @@ class Product < ApplicationRecord
     subs = substitutes.to_a
     dummys_to_add = 4 - subs.count
     dummys_to_add = 1 if dummys_to_add < 1
-    subs += ([substitutes.new(name: '<sustituto>', author: '<autor>')]*dummys_to_add)
+    subs += ([substitutes.new(name: '-', author: '-')]*dummys_to_add)
   end
 end
 

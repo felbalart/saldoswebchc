@@ -121,7 +121,6 @@ class ProductsController < ApplicationController
   end
 
   def add_substitute
-    binding.pry
     sub_name = params['substitute_name']
     sub_author = params['substitute_author']
     @product = Product.find(params['product_id'].to_i)
