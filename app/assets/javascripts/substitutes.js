@@ -1,4 +1,4 @@
-
+var subAuthor = '';
 
 function addSubstitute(productId) {
   var msg = "Agregar Propuesta Sustituto para\n";
@@ -13,18 +13,14 @@ function addSubstitute(productId) {
   var msg2 = "Ahora ingresa tu nombre";
   msg2 += "\n\n Usar formato <N.> <Apellido>\n";
   msg2 += "Por ejemplo así: \n'A. Einstein'";
-  var subAuthor = prompt(msg2);
+  subAuthor = prompt(msg2, subAuthor);
   if(subAuthor == null || subAuthor.length < 6)
     return alert('Nombre ingresado no es válido o es muy corto');  
   sendSubstitute(productId, subName, subAuthor);
 }
 
-
-
 function sendSubstitute(productId, subName, subAuthor) {
-    var url = '/substitute';
-    
-
+    var url = '/substitute';    
     $.ajax({
     type: "POST",
     dataType: "script",
