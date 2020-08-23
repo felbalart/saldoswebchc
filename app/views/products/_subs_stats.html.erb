@@ -1,0 +1,22 @@
+
+<div id=sub_stats_container>
+  <br/>
+  <h2>Campaña Sustitutos Agosto/Septiembre 2020 - Últimas Contribuciones:</h2>
+  <br/>
+  <table id=sub_stats_table style="width:100%">
+    <tr>
+      <th>Prod GIRO</th>
+      <th>Sustituto SS/VS</th>
+      <th>Propuesto Por</th>
+      <th>Fecha</th>
+    </tr>
+  <% Substitute.includes(:product).order('id desc').first(50).each do |sub| %>
+    <tr>
+      <td><%=link_to(sub.product.short_display_name, "/products?search=#{sub.product.code}", target: "_blank")%></td>
+      <td><%=sub.name%></td>
+      <td><%=sub.author%></td>
+      <td><%=sub.created_at.in_time_zone('Santiago').strftime('%e/%m/%y %H:%M')%></td>
+    </tr>
+  <% end %>
+  </table>
+</div>

@@ -3,6 +3,13 @@
 </div>
 
 <div id=infopanel>
+
+  <% if @internal_mode %>
+
+    <%= render partial: 'products/subs_stats' %> 
+
+  <% else %>
+
   <h2>INFORMACIÓN IMPORTANTE</h2>
   <p>
     - Consultas y compras a <a href="mailto:saldos@chc.cl">saldos@chc.cl</a>
@@ -14,4 +21,6 @@
   </p>
   <%=select_tag "commune", options_from_collection_for_select(DeliveryCostService.communes, :to_s, :to_s) %>
   <span id=cost_result></span>
+
+  <% end %>
 </div>

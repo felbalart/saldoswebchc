@@ -70,6 +70,10 @@ class Product < ApplicationRecord
     [id, code, name].join(' ')
   end
 
+  def short_display_name
+    [code, name].join(' ')
+  end
+
   def get_image_url
     return '/no_pic.png' unless image_url.present?
     return ('https://chc.cl/' + image_url) unless image_url.include?('http')

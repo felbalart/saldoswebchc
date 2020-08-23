@@ -196,3 +196,11 @@ a {
 .add_sub_button_div {
   text-align: center;
 }
+
+#sub_stats_container {
+  max-width: 1000px;
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  } 
+}
