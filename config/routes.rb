@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   get 'fork', to: 'fork#index'
 
+  get 'encuestas/:full_name', to: 'surveys#new'
+  post 'encuestas', to: 'surveys#create'
+
   get 'delivery_cost', to: 'application#delivery_cost'
   post 'hide', to: 'products#hide'
   get 'add_component', to: 'products#add_component'

@@ -1,0 +1,99 @@
+<style>
+  table {
+    border: 1px solid black;
+    border-collapse: collapse;width: 700px;
+    text-align: center;
+    margin: 10px 0 10px 0;
+  }
+  th, td {
+    font-size: 16px;
+    min-width: 100px;
+    padding: 10px 10px 15px 10px;
+  }
+  input[type='radio'] { transform: scale(2); }
+  .survey-question { font-size: 17px; }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(function() {
+
+  $('form').submit(function() {
+    quality_ok = $('input[type=radio][name=quality]').is(':checked');
+    speed_ok = $('input[type=radio][name=speed]').is(':checked');
+    if(quality_ok && speed_ok) { return true; }
+    alert('Debe contestar las 2 preguntas antes de enviar');
+    return false;
+  });
+});
+</script>
+<div style='margin: 3%; font-family: Arial, Helvetica, sans-serif;'>
+  <%= image_tag('http://chc.cl/ofertas/wp-content/themes/chc-2017/images/logo-chc.svg', style: 'width:200px; height:auto;') %>
+  <br/>
+  <h2>ENCUESTA EVALUACION SIC</h2>
+  <p>
+    Esta es una muy breve encuesta anónima para medir el servicio que da área de apoyo a cliente interno.  Agradecemos responder a conciencia
+  </p>
+  <h2><%=@decoded_full_name%></h2>
+  <% if @already_exists %>
+  <br/><h2 style='color:green;'>Encuesta fue respondida para este SIC.  Muchas gracias</h2>
+  <% else %>
+
+
+    <div>
+    <%= form_with(url: "/encuestas") do %>
+    <%= hidden_field_tag(:full_name, @full_name) %>
+    <span class=survey-question> 1.- ¿Como calificaría <b>la calidad</b> de la respuesta/atención recibida?</span>
+    <table>
+      <tr>
+        <th>Muy Mala</th>
+        <th>Mala</th>
+        <th>Buena</th>
+        <th>Muy Buena</th>
+        <th>Sobresaliente</th>
+      </tr>
+      <tr>
+        <td>😭</td>
+        <td>🙁</td>
+        <td>😊</td>
+        <td>😄</td>
+        <td>😍</td>
+      </tr>
+      <tr>
+      <td><input type="radio" id="quality1" name="quality" value="1"></td>
+      <td><input type="radio" id="quality2" name="quality" value="2"></td>
+      <td><input type="radio" id="quality3" name="quality" value="3"></td>
+      <td><input type="radio" id="quality4" name="quality" value="4"></td>
+      <td><input type="radio" id="quality5" name="quality" value="5"></td>
+      </tr>
+    </table>
+    <br/>
+    <span class=survey-question> 2.- ¿Como calificaría <b>la velocidad</b> de la respuesta/atención recibida?</span>
+    <table>
+      <tr>
+        <th>Lentísima</th>
+        <th>Lenta</th>
+        <th>Rápida</th>
+        <th>Muy Rápida</th>
+        <th>Supersónica</th>
+      </tr>
+      <tr>
+        <td>🐌</td>
+        <td>🚶‍♂️</td>
+        <td>🚲</td>
+        <td>🚗💨</td>
+        <td>🚀</td>
+      </tr>
+      <tr>
+      <td><input type="radio" id="speed1" name="speed" value="1"></td>
+      <td><input type="radio" id="speed2" name="speed" value="2"></td>
+      <td><input type="radio" id="speed3" name="speed" value="3"></td>
+      <td><input type="radio" id="speed4" name="speed" value="4"></td>
+      <td><input type="radio" id="speed5" name="speed" value="5"></td>
+      </tr>
+    </table>
+      <br/>
+      <%= submit_tag("Enviar", style: 'width: 100px; height: 100px; font-size: 20px;margin-top: 20px;') %>
+    <% end %>
+    </div>
+  <% end %>
+</div>
