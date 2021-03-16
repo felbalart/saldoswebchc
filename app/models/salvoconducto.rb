@@ -1,6 +1,8 @@
 class Salvoconducto < ApplicationRecord
 
-DESTINOS = ['CHC Temuco', 'CD CHC Lampa']
+DESTINOS = ['CHC Las Condes (Casa Matriz)','CHC CD Lampa',
+  'CHC La Serena','CHC Viña del Mar','CHC Talca', 'CHC Concepcion', 'CHC Temuco','CHC Puerto Montt',
+  'Delfin Carmen o ADT', 'Delfin Planta Lampa', 'Delfin Coquimbo','Delfin Curico','Delfin Puerto Montt']
 TIPODOCS = ['Run', 'Pasaporte/DNI']
 PAISDOCS = ['CHILE','VENEZUELA','BRASIL','COLOMBIA','HAITI','PERÚ','ARGENTINA','BOLIVIA','ECUADOR','URUGUAY']
 COMUNAS = ['SANTIAGO', 'ALHUÉ']
