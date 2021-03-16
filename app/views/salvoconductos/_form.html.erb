@@ -1,0 +1,59 @@
+<style>
+  .salvoconducto_form {
+    margin-left: 20px; 
+  }
+  #error_explanation {
+    background-color: red;
+    max-width: 700px;
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+  .field {
+    width: 500px;
+  }
+  .field input {
+    width: 100%;
+  }
+</style>
+
+<div class=salvoconducto_form>
+<%= form_with(model: salvoconducto, local: true) do |form| %>
+  <% if salvoconducto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= salvoconducto.errors.count %> errores impidieron registrar su solicitud:</h2>
+
+      <ul>
+      <% salvoconducto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="field"><%= form.label('periodo_')%><%= form.select(:periodo, Salvoconducto::PERIODOS) %></div><br/>
+<div class="field"><%= form.label('lugar de destino_')%><%= form.select(:destino, Salvoconducto::DESTINOS) %></div><br/>
+<div class="field"><%= form.label('nombres_')%><%= form.text_field :nombres %></div><br/>
+<div class="field"><%= form.label('apellido1_')%><%= form.text_field :apellido1 %></div><br/>
+<div class="field"><%= form.label('apellido2_')%><%= form.text_field :apellido2 %></div><br/>
+<div class="field"><%= form.label('tipo documento_')%><%= form.select(:tipodoc, Salvoconducto::TIPODOCS) %></div><br/>
+<div class="field"><%= form.label('pais documento_')%><%= form.select(:paisdoc, Salvoconducto::PAISDOCS) %></div><br/>
+<div class="field"><%= form.label('numdoc (RUT SIN PUNTOS NI GUION NI DIGITO VERIFICADOR)_')%><%= form.text_field :numdoc %></div>
+<br/>
+<div class="field"><%= form.label('Digito Verificador_')%><%= form.select(:dv, Salvoconducto::DVS) %></div><br/>
+<div class="field"><%= form.label('Fecha nacimiento_')%><%= form.date_field :fechanac %></div><br/>
+<div class="field"><%= form.label('domicilio_')%><%= form.text_field :domicilio %></div><br/>
+<div class="field"><%= form.label('comuna domicilio_')%><%= form.select(:comuna, Salvoconducto::COMUNAS) %></div><br/>
+<div class="field"><%= form.label('mail_')%><%= form.text_field :mail %></div><br/>
+<div class="field"><%= form.label('genero_')%><%= form.select(:genero, Salvoconducto::GENEROS) %></div><br/>
+<div class="field"><%= form.label('interregional_')%><%= form.select(:interregional, Salvoconducto::INTERREGIONALS) %></div><br/>
+
+
+  <div class="actions">
+    <%= form.submit('Crear Solicitud')%>
+    <br/>
+    <br/>
+
+  </div>
+
+<% end %>
+<%= button_to('Cancelar', :salvoconductos, method: :get)%>
+</div>

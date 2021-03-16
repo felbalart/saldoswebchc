@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_014723) do
+ActiveRecord::Schema.define(version: 2021_03_15_220403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,27 @@ ActiveRecord::Schema.define(version: 2020_10_08_014723) do
     t.string "datasheet_url"
     t.string "hidden_msg"
     t.boolean "active"
+  end
+
+  create_table "salvoconductos", force: :cascade do |t|
+    t.string "periodo"
+    t.string "destino"
+    t.string "nombres"
+    t.string "apellido1"
+    t.string "apellido2"
+    t.string "tipodoc"
+    t.string "paisdoc"
+    t.string "numdoc"
+    t.string "dv"
+    t.date "fechanac"
+    t.string "domicilio"
+    t.string "comuna"
+    t.string "mail"
+    t.string "genero"
+    t.string "patente"
+    t.string "interregional"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "substitutes", force: :cascade do |t|

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root to: 'application#home'
 
+  get '/salvoconductos', to: 'salvoconductos#index'
+  get '/salvoconductos/new', to: 'salvoconductos#new'
+  post '/salvoconductos', to: 'salvoconductos#create'
+
+
   get 'fork', to: 'fork#index'
 
   get 'encuestas/:full_name', to: 'surveys#new'
