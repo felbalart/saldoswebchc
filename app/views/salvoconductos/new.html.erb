@@ -2,7 +2,8 @@
 body { font-family: Roboto, Arial, Helvetica, sans-serif; }
 </style>
 
-<%=image_tag 'https://chc.cl/wp-content/themes/chc-2017/images/logo-chc.svg', width: '100px', style: 'padding: 1px 27px 12px 75px'%>
-<%=image_tag 'https://delfin.cl/wp-content/uploads/2020/03/Logo-Delfin.png', width: '100px'%>
+<%=image_tag 'https://chc.cl/wp-content/themes/chc-2017/images/logo-chc.svg', width: '100px', style: 'padding: 1px 27px 12px 125px'%>
+<%=#image_tag 'https://delfin.cl/wp-content/uploads/2020/03/Logo-Delfin.png', width: '100px'
+%>
 <h1>Solicitud de Salvoconducto</h1>
 <%= render 'form', salvoconducto: @salvoconducto %>

@@ -23,6 +23,6 @@ class SalvoconductosController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
     def salvoconducto_params
-      params.require(:salvoconducto).permit(:periodo, :destino, :nombres, :apellido1, :apellido2, :tipodoc, :paisdoc, :numdoc, :dv, :fechanac, :domicilio, :comuna, :mail, :genero, :interregional)
+      params.require(:salvoconducto).permit(:periodo, :destino, :nombres, :apellido1, :apellido2, :tipodoc, :paisdoc, :numdoc, :dv, :fechanac, :domicilio, :comuna, :mail, :genero, :interregional, :role)
     end
 end
