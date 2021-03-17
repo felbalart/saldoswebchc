@@ -50,6 +50,30 @@ def resume
   data.join(' | ')
 end
 
+def to_csv
+  [ id,
+    created_at.in_time_zone('Santiago').strftime("%d/%m/%Y %H:%M:%S"),
+    periodo,
+    destino,
+    nombres,
+    apellido1,
+    apellido2,
+    tipodoc,
+    paisdoc,
+    numdoc,
+    dv,
+    fechanac.strftime("%d/%m/%Y"),
+    domicilio,
+    comuna,
+    mail,
+    genero,
+    patente,
+    role,
+    'Si',
+    interregional
+  ].join(';')
+end
+
 end
 
 # == Schema Information

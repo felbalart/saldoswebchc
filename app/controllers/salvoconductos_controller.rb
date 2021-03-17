@@ -20,6 +20,13 @@ class SalvoconductosController < ApplicationController
     end
   end
 
+  def all
+    str = [:id, :creado_en, :periodo, :destino, :nombres, :apellido1, :apellido2, :tipodoc, :paisdoc, :numdoc, :dv, :fechanac, :domicilio, :comuna, :mail, :genero, :patente, :funcion_rol, :esencial, :interregional].join(';')
+    str += "\n"
+    str += Salvoconducto.order('id asc').map(&:to_csv).join("\n")
+    render plain: str
+  end
+
 
   # Never trust parameters from the scary internet, only allow the white list through.
     def salvoconducto_params
