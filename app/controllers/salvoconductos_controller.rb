@@ -20,6 +20,12 @@ class SalvoconductosController < ApplicationController
     end
   end
 
+  def certificate
+    @worker = Worker.find_by(rut: params[:rut])
+    @date = Date.yesterday
+    raise ActionController::RoutingError.new('Not Found') unless @worker
+  end
+
   def all
     str = [:id, :creado_en, :periodo, :destino, :nombres, :apellido1, :apellido2, :tipodoc, :paisdoc, :numdoc, :dv, :fechanac, :domicilio, :comuna, :mail, :genero, :patente, :funcion_rol, :esencial, :interregional].join(';')
     str += "\n"

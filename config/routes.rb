@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/salvoconductos/new', to: 'salvoconductos#new'
   post '/salvoconductos', to: 'salvoconductos#create'
   get '/salvoconductos/all', to: 'salvoconductos#all'
+  get '/salvoconductos/:rut', to: 'salvoconductos#certificate'
+
 
 
   get 'fork', to: 'fork#index'
