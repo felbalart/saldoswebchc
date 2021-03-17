@@ -17,11 +17,6 @@ class Worker < ApplicationRecord
    ENV.fetch("#{company}_LOGO_URL", 'https://www.logaster.com/blog/wp-content/uploads/2018/05/Canva.png')
   end
 
-  def hired_at
-    # TODO
-    Date.today
-  end
-
   def dv
     return nil if rut.blank?
     dvr='0'
@@ -58,4 +53,5 @@ end
 #  updated_at :datetime         not null
 #  company    :string
 #  role       :string
+#  hired_at   :date
 #
