@@ -1,7 +1,7 @@
 <style>
 body { font-family: Arial, Helvetica, sans-serif; }
 </style>
-<div id=certificate style="width: 563px; height: 750px; background-color: #F8F8F8; padding: 5px 80px;text-align: center;line-height: 28px;">
+<div id=certificate style="width: 563px; height: 850px; background-color: #F8F8F8; padding: 5px 80px;text-align: center;line-height: 28px;">
 
 <div id=cert_header style="margin-top: 80px;">
   <%=image_tag @worker.company_logo_url, width: '100px'%>
@@ -13,7 +13,7 @@ body { font-family: Arial, Helvetica, sans-serif; }
 
 <p style="text-align: left;">
   Se certifica mediante el presente documento que el/la Sr(a). <%=@worker.name%>, Cédula de identidad
-  <%=@worker.rut%>-<%=@worker.dv%>, está contratada por nuestra empresa <%=@worker.company_name%>, desde el <%=@worker.hired_at.strftime("%d/%m/%Y")%>, desempeñando el cargo de <%=@worker.role%>.&nbsp;Su contrato se encuentra VIGENTE.
+  <%=number_with_delimiter(@worker.rut, delimiter: '.')%>-<%=@worker.dv%>, está contratado(a) por nuestra empresa <%=@worker.company_name%>, desde el <%=@worker.hired_at.strftime("%d/%m/%Y")%>, desempeñando el cargo de <%=@worker.role%>.&nbsp;Su contrato se encuentra VIGENTE.
 </p>
 
 <p style="text-align: left;">
