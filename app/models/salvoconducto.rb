@@ -10,9 +10,10 @@ GENEROS = ['M','F']
 INTERREGIONALS = ['No','Si']
 DVS = ['1','2','3','4','5','6','7','8','9','0','K']
 PERIODOS = [
-'P01 SEMANA => [Jueves 18 marzo a Viernes 19 marzo] (2 dias) Hora Corte: Miercoles 17 marzo 16:00',
-'P02 FIN DE SEMANA => [Sábado 20 marzo a Domingo 21 marzo] (2 dias) Hora Corte: Viernes 19 marzo 16:00',
-'P03 SEMANA => [Lunes 22 marzo a Viernes 26 marzo] (5 dias) Hora Corte: Viernes 19 marzo 16:00',
+# 'P01 SEMANA => [Jueves 18 marzo a Viernes 19 marzo] (2 dias) Hora Corte: Miercoles 17 marzo 16:00',
+# 'P02 FIN DE SEMANA => [Sábado 20 marzo a Domingo 21 marzo] (2 dias) Hora Corte: Viernes 19 marzo 16:00',
+# 'P03 SEMANA => [Lunes 22 marzo a Viernes 26 marzo] (5 dias) Hora Corte: Viernes 19 marzo 16:00',
+'P03.5 SEMANA => [Jueves 25 marzo a Viernes 26 marzo] (2 dias) Hora Corte: Miércoles 24 marzo 16:00',
 'P04 FIN DE SEMANA => [Sábado 27 marzo a Domingo 28 marzo] (2 dias) Hora Corte: Viernes 26 marzo 16:00',
 'P05 SEMANA => [Lunes 29 marzo a Viernes 2 abril] (5 dias) Hora Corte: Viernes 26 marzo 16:00']
 
