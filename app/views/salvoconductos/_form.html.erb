@@ -29,8 +29,8 @@
       </ul>
     </div>
   <% end %>
-<div class="field"><%= form.label('periodo_')%><%= form.select(:periodo, Salvoconducto::PERIODOS) %></div><br/>
-<div class="field"><%= form.label('lugar de destino_')%><%= form.select(:destino, Salvoconducto::DESTINOS) %></div><br/>
+<div class="field"><%= form.label('periodo_')%><%= form.select(:periodo, ['Escoger Periodo'] + Salvoconducto::PERIODOS) %></div><br/>
+<div class="field"><%= form.label('lugar de destino_')%><%= form.select(:destino, ['Escoger Destino'] + Salvoconducto::DESTINOS) %></div><br/>
 <div class="field"><%= form.label('nombres_')%><%= form.text_field :nombres %></div><br/>
 <div class="field"><%= form.label('apellido1_')%><%= form.text_field :apellido1 %></div><br/>
 <div class="field"><%= form.label('apellido2_')%><%= form.text_field :apellido2 %></div><br/>
@@ -38,10 +38,10 @@
 <div class="field"><%= form.label('pais documento_')%><%= form.select(:paisdoc, Salvoconducto::PAISDOCS) %></div><br/>
 <div class="field"><%= form.label('numdoc (RUT SIN PUNTOS NI GUION NI DIGITO VERIFICADOR)_')%><%= form.text_field :numdoc %></div>
 <br/>
-<div class="field"><%= form.label('Digito Verificador_')%><%= form.select(:dv, Salvoconducto::DVS) %></div><br/>
+<div class="field"><%= form.label('Digito Verificador_')%><%= form.select(:dv,  ['Escoger Digito Verificador'] + Salvoconducto::DVS) %></div><br/>
 <div class="field"><%= form.label('Fecha nacimiento_')%><%= form.date_field :fechanac %></div><br/>
 <div class="field"><%= form.label('domicilio_')%><%= form.text_field :domicilio %></div><br/>
-<div class="field"><%= form.label('comuna domicilio_')%><%= form.select(:comuna, Salvoconducto::COMUNAS) %></div><br/>
+<div class="field"><%= form.label('comuna domicilio_')%><%= form.select(:comuna, ['Escoger Comuna'] + Salvoconducto::COMUNAS) %></div><br/>
 <div class="field"><%= form.label('Rol/Funcion del Trabajador_')%><%= form.text_field :role %></div><br/>
 <div class="field"><%= form.label('mail_')%><%= form.text_field :mail %></div><br/>
 <div class="field"><%= form.label('genero_')%><%= form.select(:genero, Salvoconducto::GENEROS) %></div><br/>
