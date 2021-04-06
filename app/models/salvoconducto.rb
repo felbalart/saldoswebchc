@@ -9,6 +9,13 @@ COMUNAS = ['ALGARROBO', 'ALHUÉ', 'ALTO BIOBÍO', 'ALTO DEL CARMEN', 'ALTO HOSPI
 GENEROS = ['M','F']
 INTERREGIONALS = ['No','Si']
 DVS = ['1','2','3','4','5','6','7','8','9','0','K']
+AREAS_TRABAJO = [
+'Mantención de sistemas',
+'Labores productivas',
+'Labores operativas',
+'Labores logísticas',
+'Seguridad',
+'Limpieza y sanitización']
 PERIODOS = [
 # 'P01 SEMANA => [Jueves 18 marzo a Viernes 19 marzo] (2 dias) Hora Corte: Miercoles 17 marzo 16:00',
 # 'P02 FIN DE SEMANA => [Sábado 20 marzo a Domingo 21 marzo] (2 dias) Hora Corte: Viernes 19 marzo 16:00',
@@ -16,8 +23,10 @@ PERIODOS = [
 # 'P03.5 SEMANA => [Jueves 25 marzo a Viernes 26 marzo] (2 dias) Hora Corte: Miércoles 24 marzo 16:00',
 # 'P04 FIN DE SEMANA => [Sábado 27 marzo a Domingo 28 marzo] (2 dias) Hora Corte: Viernes 26 marzo 16:00',
 # 'P05 SEMANA => [Lunes 29 marzo a Viernes 2 abril] (5 dias) Hora Corte: Viernes 26 marzo 16:00']
-'P06 FIN DE SEMANA => [Sábado 3 abril a Domingo 4 abril] (2 dias) Hora Corte: Viernes 2 abril 16:00',
-'P07 SEMANA => [Lunes 5 abril a Viernes 9 abril] (5 dias) Hora Corte: Viernes 2 abril 16:00']
+# 'P06 FIN DE SEMANA => [Sábado 3 abril a Domingo 4 abril] (2 dias) Hora Corte: Viernes 2 abril 16:00',
+# 'P07 SEMANA => [Lunes 5 abril a Viernes 9 abril] (5 dias) Hora Corte: Viernes 2 abril 16:00']
+'P08 FIN DE SEMANA => [Sábado 10 abril a Domingo 11 abril] (2 dias) Hora Corte: Viernes 9 abril 16:00',
+'P09 SEMANA => [Lunes 12 abril a Viernes 16 abril] (5 dias) Hora Corte: Viernes 9 abril 16:00']
 
   
 validates :nombres, :apellido1, :numdoc, :dv,
@@ -30,6 +39,7 @@ validates :comuna, inclusion: COMUNAS
 validates :genero, inclusion: GENEROS
 validates :interregional, inclusion: INTERREGIONALS
 validates :dv, inclusion: DVS
+validates :area_trabajo, inclusion: AREAS_TRABAJO
 validates :numdoc, numericality: true
 validates :numdoc, length: { minimum: 7, maximum: 8 }
 validates :numdoc, uniqueness: { scope: :periodo }
@@ -74,7 +84,8 @@ def to_csv
     patente,
     role,
     'Si',
-    interregional
+    interregional,
+    area_trabajo
   ].join(';')
 end
 
@@ -104,4 +115,5 @@ end
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  role          :string
+#  area_trabajo  :string
 #

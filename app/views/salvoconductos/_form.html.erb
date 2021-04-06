@@ -43,6 +43,7 @@
 <div class="field"><%= form.label('domicilio_')%><%= form.text_field :domicilio %></div><br/>
 <div class="field"><%= form.label('comuna domicilio_')%><%= form.select(:comuna, ['Escoger Comuna'] + Salvoconducto::COMUNAS) %></div><br/>
 <div class="field"><%= form.label('Rol/Funcion del Trabajador_')%><%= form.text_field :role %></div><br/>
+<div class="field"><%= form.label('area en que trabaja_')%><%= form.select(:area_trabajo, ['Escoger Area'] + Salvoconducto::AREAS_TRABAJO) %></div><br/>
 <div class="field"><%= form.label('mail_')%><%= form.text_field :mail %></div><br/>
 <div class="field"><%= form.label('genero_')%><%= form.select(:genero, Salvoconducto::GENEROS) %></div><br/>
 <div class="field"><%= form.label('interregional_')%><%= form.select(:interregional, Salvoconducto::INTERREGIONALS) %></div><br/>
