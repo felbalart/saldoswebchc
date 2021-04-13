@@ -30,7 +30,7 @@ PERIODOS = [
 'P10 FIN DE SEMANA => [Sabado 17 abril a Domingo 18 abril] (2 dias) Hora Corte: Jueves 15 abril 16:00',
 'P11 SEMANA => [Lunes 19 abril a Viernes 23 abril] (5 dias) HHora Corte: Jueves 15 abril 16:00']
 
-FECHAS_CORTE = { 'P10' => Time.new(2021, 04, 15, 16, 00, 00, '-04:00'), 'P11' => Time.new(2021, 04, 15, 16, 00, 00, '-04:00') }
+FECHAS_CORTE = { 'P10' => Time.new(2021, 4, 15, 16, 0, 0, '-04:00'), 'P11' => Time.new(2021, 4, 15, 16, 0, 0, '-04:00') }
 
 validates :nombres, :apellido1, :numdoc, :dv,
 :fechanac, :domicilio, :mail, :role, presence: true
@@ -49,10 +49,10 @@ validates :numdoc, uniqueness: { scope: :periodo }
 
 def fecha_corte
   pstr = periodo[0..2]
-  FECHAS_CORTE[pstr] || Time.new(2021, 04, 09, 16, 00, 00, '-04:00')
+  FECHAS_CORTE[pstr] || Time.new(2021, 4, 9, 16, 0, 0, '-04:00')
 end
 
-NEW_MODE_DATE = Time.new(2021, 04, 13) 
+NEW_MODE_DATE = Time.new(2021, 4, 13) 
 def status
   return 'ANTIGUO' if created_at < NEW_MODE_DATE
   return 'FECHA CORTE NO HA LLEGADO' if fecha_corte < Time.now
