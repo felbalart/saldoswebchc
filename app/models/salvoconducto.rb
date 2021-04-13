@@ -18,17 +18,20 @@ AREAS_TRABAJO = [
 'Limpieza y sanitización']
 PERIODOS = [
 # 'P01 SEMANA => [Jueves 18 marzo a Viernes 19 marzo] (2 dias) Hora Corte: Miercoles 17 marzo 16:00',
-# 'P02 FIN DE SEMANA => [Sábado 20 marzo a Domingo 21 marzo] (2 dias) Hora Corte: Viernes 19 marzo 16:00',
+# 'P02 FIN DE SEMANA => [Sabado 20 marzo a Domingo 21 marzo] (2 dias) Hora Corte: Viernes 19 marzo 16:00',
 # 'P03 SEMANA => [Lunes 22 marzo a Viernes 26 marzo] (5 dias) Hora Corte: Viernes 19 marzo 16:00',
 # 'P03.5 SEMANA => [Jueves 25 marzo a Viernes 26 marzo] (2 dias) Hora Corte: Miércoles 24 marzo 16:00',
-# 'P04 FIN DE SEMANA => [Sábado 27 marzo a Domingo 28 marzo] (2 dias) Hora Corte: Viernes 26 marzo 16:00',
+# 'P04 FIN DE SEMANA => [Sabado 27 marzo a Domingo 28 marzo] (2 dias) Hora Corte: Viernes 26 marzo 16:00',
 # 'P05 SEMANA => [Lunes 29 marzo a Viernes 2 abril] (5 dias) Hora Corte: Viernes 26 marzo 16:00']
-# 'P06 FIN DE SEMANA => [Sábado 3 abril a Domingo 4 abril] (2 dias) Hora Corte: Viernes 2 abril 16:00',
+# 'P06 FIN DE SEMANA => [Sabado 3 abril a Domingo 4 abril] (2 dias) Hora Corte: Viernes 2 abril 16:00',
 # 'P07 SEMANA => [Lunes 5 abril a Viernes 9 abril] (5 dias) Hora Corte: Viernes 2 abril 16:00']
-'P08 FIN DE SEMANA => [Sábado 10 abril a Domingo 11 abril] (2 dias) Hora Corte: Viernes 9 abril 16:00',
-'P09 SEMANA => [Lunes 12 abril a Viernes 16 abril] (5 dias) Hora Corte: Viernes 9 abril 16:00']
+# 'P08 FIN DE SEMANA => [Sabado 10 abril a Domingo 11 abril] (2 dias) Hora Corte: Viernes 9 abril 16:00',
+# 'P09 SEMANA => [Lunes 12 abril a Viernes 16 abril] (5 dias) Hora Corte: Viernes 9 abril 16:00']
+'P10 FIN DE SEMANA => [Sabado 17 abril a Domingo 18 abril] (2 dias) Hora Corte: Jueves 15 abril 16:00',
+'P11 SEMANA => [Lunes 19 abril a Viernes 23 abril] (5 dias) HHora Corte: Jueves 15 abril 16:00']
 
-  
+FECHAS_CORTE = { 'P10' => Time.new(2021, 04, 15, 16, 00, 00, '-04:00'), 'P11' => Time.new(2021, 04, 15, 16, 00, 00, '-04:00') }
+
 validates :nombres, :apellido1, :numdoc, :dv,
 :fechanac, :domicilio, :mail, :role, presence: true
 validates :periodo, inclusion: PERIODOS
@@ -44,12 +47,46 @@ validates :numdoc, numericality: true
 validates :numdoc, length: { minimum: 7, maximum: 8 }
 validates :numdoc, uniqueness: { scope: :periodo }
 
+def fecha_corte
+  pstr = periodo[0..2]
+  FECHAS_CORTE[pstr] || Time.new(2021, 04, 09, 16, 00, 00, '-04:00')
+end
+
+NEW_MODE_DATE = Time.new(2021, 04, 13) 
+def status
+  return 'ANTIGUO' if created_at < NEW_MODE_DATE
+  return 'FECHA CORTE NO HA LLEGADO' if fecha_corte < Time.now
+  return 'DISPONIBLE PARA DESCARGA' if patente.present?
+  'PENDIENTE EN PROCESO'
+end
+
+def status_color
+  sstr = status[0..2]
+  { 'ANT' => 'black', 'FEC' => 'gray', 'DISP' => 'blue', 'PEND' => 'red' }[sstr]
+end
 
 def ofuscate str
   return str if str.to_s.length < 4
   str[0..1] + (['*']*(str.length - 4)).join + str[-2..-1]
 end
 
+def ofuscate_end(str, show_n)
+  str = str.to_s
+  return str if str.length < show_n
+  str[0...show_n] + (['*']*(str.length - show_n)).join
+end
+
+def truncate_end(str, show_n)
+  str = str.to_s
+  return str if str.length < show_n
+  str[0...show_n] + '...'
+end
+
+def public_rut;ofuscate_end(rut, 5);end
+def public_nombres;truncate_end(nombres, 3);end
+def public_apellido1;truncate_end(apellido1, 3);end
+
+# DEPRECATED
 def resume
   data = []
   data << "ID: #{id}"
