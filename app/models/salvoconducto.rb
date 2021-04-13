@@ -56,7 +56,7 @@ end
 NEW_MODE_DATE = Time.new(2021, 4, 13) 
 def status
   return 'ANTIGUO' if created_at < NEW_MODE_DATE
-  return 'FECHA CORTE NO HA LLEGADO' if fecha_corte < Time.now
+  return 'FECHA CORTE NO HA LLEGADO' if fecha_corte > Time.now
   return 'DISPONIBLE PARA DESCARGA' if patente.present?
   'PENDIENTE EN PROCESO'
 end
