@@ -47,9 +47,10 @@ validates :numdoc, numericality: true
 validates :numdoc, length: { minimum: 7, maximum: 8 }
 validates :numdoc, uniqueness: { scope: :periodo }
 
+
+def periodo_str;periodo[0..2] if periodo;end
 def fecha_corte
-  pstr = periodo[0..2]
-  FECHAS_CORTE[pstr] || Time.new(2021, 4, 9, 16, 0, 0, '-04:00')
+  FECHAS_CORTE[periodo_str] || Time.new(2021, 4, 9, 16, 0, 0, '-04:00')
 end
 
 NEW_MODE_DATE = Time.new(2021, 4, 13) 
@@ -61,8 +62,8 @@ def status
 end
 
 def status_color
-  sstr = status[0..2]
-  { 'ANT' => 'black', 'FEC' => 'gray', 'DISP' => 'blue', 'PEND' => 'red' }[sstr]
+  sstr = status[0..3]
+  { 'ANTI' => 'black', 'FECH' => 'green', 'DISP' => 'blue', 'PEND' => 'red' }[sstr]
 end
 
 def ofuscate str
@@ -82,9 +83,10 @@ def truncate_end(str, show_n)
   str[0...show_n] + '...'
 end
 
-def public_rut;ofuscate_end(rut, 5);end
+def public_numdoc;ofuscate_end(numdoc, 5);end
 def public_nombres;truncate_end(nombres, 3);end
 def public_apellido1;truncate_end(apellido1, 3);end
+def public_created_at;created_at.in_time_zone('Santiago').strftime("%d/%m/%Y %H:%M:%S");end
 
 # DEPRECATED
 def resume

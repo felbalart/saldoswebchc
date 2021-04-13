@@ -6,6 +6,15 @@ body { font-family: Roboto, Arial, Helvetica, sans-serif; }
   max-width: 700px;
   margin-bottom: 20px;
   }
+
+  #salvos-main-table {
+    width:100%;
+    border-collapse: collapse;
+  }
+
+  #salvos-main-table tr, th, td{
+    border: 1px solid black;
+  }
 </style>
 
 <%=image_tag 'https://chc.cl/wp-content/themes/chc-2017/images/logo-chc.svg', width: '100px', style: 'padding: 1px 27px 12px 150px'%>
@@ -15,18 +24,40 @@ body { font-family: Roboto, Arial, Helvetica, sans-serif; }
 
 <h3>Instrucciones:</h3>
 <p>- Solicitar solo para fines laborales y bajo autorizacion de jefatura</p>
-<p>- La hora límite para enviar solicitudes es a las <b>16:00 del viernes previo</b> al periodo en cuestión (para ambos tipos: Fin de Semana y Semana) </p>
+<p>- La hora límite para enviar solicitudes es a las <b>16:00 del jueves previo</b> al periodo en cuestión (para ambos tipos: Fin de Semana y Semana) </p>
 <p>- Solicitudes enviadas fuera de este plazo <b>no serán procesadas</b></p>
-<p>* Las del periodo Jue 18 a Vie 19 marzo se recibirán hasta las 16:00 del Mie 17</p>
 
 <p id="notice"><%= notice %></p>
 <%= button_to('Crear Solicitud', :salvoconductos_new, method: :get)%>
 
+<h3> Periodos Vigentes</h3>
+<%Salvoconducto::PERIODOS.each do |period|%>
+<%=period%><br/>
+<%end%>
+
 <h3>Solicitudes Registradas</h3>
-  <% Salvoconducto.order('id desc').limit(100).each do |scond| %>
-  <p>
-    <%= scond.resume %>
-  </p>
-  <% end %>
+<table id=salvos-main-table>
+  <tr>
+    <th>ID Solicitud</th>
+    <th>Periodo</th>
+    <th>Rut</th>
+    <th>Apellido</th>
+    <th>Nombre</th>
+    <th>Creada En</th>
+    <th>Estado</th>
+  </tr>
+  <% Salvoconducto.order('id desc').limit(250).each do |scdt| %>
+    <tr>
+      <td><%=scdt.id%></td>
+      <td><%=scdt.periodo_str%></td>
+      <td><%=scdt.public_numdoc%></td>
+      <td><%=scdt.public_apellido1%></td>
+      <td><%=scdt.public_nombres%></td>
+      <td><%=scdt.public_created_at%></td>
+      <td style="color: <%=scdt.status_color%>;"><%=scdt.status%></td>
+    </tr>
+    <% end %>
+</table>
+
 
 
