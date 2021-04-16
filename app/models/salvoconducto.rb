@@ -30,9 +30,9 @@ PERIODOS = [
 'P10 FIN DE SEMANA => [Sabado 17 abril a Domingo 18 abril] (2 dias) Hora Corte: Jueves 15 abril 16:00',
 'P11 SEMANA => [Lunes 19 abril a Viernes 23 abril] (5 dias) HHora Corte: Jueves 15 abril 16:00',
 'P12 FIN DE SEMANA => [Sabado 24 abril a Domingo 25 abril] (2 dias) Hora Corte: Jueves 22 abril 16:00',
-'P13 SEMANA => [Lunes 26 abril a Viernes 30 abril] (5 dias) Hora Corte: Jueves 29 abril 16:00',]
+'P13 SEMANA => [Lunes 26 abril a Viernes 30 abril] (5 dias) Hora Corte: Jueves 22 abril 16:00',]
 
-FECHAS_CORTE = { 'P12' => Time.new(2021, 4, 22, 16, 0, 0, '-04:00')  }
+FECHAS_CORTE = { 'P12' => Time.new(2021, 4, 22, 16, 0, 0, '-04:00'), 'P13' => Time.new(2021, 4, 22, 16, 0, 0, '-04:00')  }
 
 validates :nombres, :apellido1, :numdoc, :dv,
 :fechanac, :domicilio, :mail, :role, presence: true
@@ -57,7 +57,7 @@ end
 
 NEW_MODE_DATE = Time.new(2021, 4, 13) 
 def status
-  return 'ANTIGUO' if created_at < NEW_MODE_DATE
+  return 'PERIODO CERRADO' if created_at < NEW_MODE_DATE
   return 'FECHA CORTE NO HA LLEGADO' if fecha_corte > Time.now
   return 'DISPONIBLE PARA DESCARGA' if patente.present?
   'PENDIENTE EN PROCESO'
@@ -65,7 +65,7 @@ end
 
 def status_color
   sstr = status[0..3]
-  { 'ANTI' => 'black', 'FECH' => 'green', 'DISP' => 'blue', 'PEND' => 'red' }[sstr]
+  { 'PERI' => 'black', 'FECH' => 'green', 'DISP' => 'blue', 'PEND' => 'red' }[sstr]
 end
 
 def ofuscate str
