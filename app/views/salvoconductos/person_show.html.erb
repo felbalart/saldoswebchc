@@ -1,12 +1,14 @@
 <style>
   body { font-family: Roboto, Arial, Helvetica, sans-serif; }
 </style>
+<%=link_to('<- Volver al Inicio', salvoconductos_path)%>
 <h2>Rut Consulta</h2>
 <p><%=@rut%></p>
 
 <% if !@worker && !@salvoconductos.present? %>
  <p>No se encuentra información para el rut consultado</p>
  <p>IMPORTANTE: ingrese rut SIN PUNTOS NI GUIONES NI DIGITO VERIFICADOR</p>
+ <h4>Ejemplos:</h4>
  <p>CORRECTO: 12345678</p>
  <p>INCORRECTO: 12.345.678</p>
  <p>INCORRECTO: 12.345.678-9</p>

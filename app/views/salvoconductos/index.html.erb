@@ -15,27 +15,67 @@ body { font-family: Roboto, Arial, Helvetica, sans-serif; }
   #salvos-main-table tr, th, td{
     border: 1px solid black;
   }
+
+  .section-div {
+    border: 1px solid black; 
+    margin-top: 20px;
+    padding: 10px 10px 20px 10px;
+    background-color: #E8E8E8;
+  }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+$(function() {
+    $( "#qrut-button" ).click(function() {
+      var qrut = $('#qrut-input').val().trim();
+      if(qrut.includes('.')) return alert('Rut a consultar no debe incluir punto');
+      if(qrut.includes('-')) return alert('Rut a consultar no debe incluir guión');
+      if(qrut.length > 8) return alert('Rut a consultar excede largo maximo 8 digitos. NO incluya ultimo digito verificador');
+      if(qrut.length < 7) return alert('Ingrese rut a consultar (debe tener largo minimo 6 caracteres)');
+      window.location.href = '/salvoconductos/' + qrut;
+    });
+});
+
+</script>
 
 <%=image_tag 'https://chc.cl/wp-content/themes/chc-2017/images/logo-chc.svg', width: '100px', style: 'padding: 1px 27px 12px 150px'%>
 <%=#image_tag 'https://delfin.cl/wp-content/uploads/2020/03/Logo-Delfin.png', width: '100px'
 %>
-<h1>Solicitudes de Salvoconducto</h1>
+<h1>Portal de Salvoconductos</h1>
+<div class=section-div>
+  <h3>Ver/Descargar mis Certificados y Salvoconductos ya emitidos</h3>
+  Ingrese el <b>rut</b> para consultar SIN PUNTOS NI GUION NI DIGITO VERIFICADOR (ej 12345678)
+  <br/>
+  <br/>
+    <div>
+      <input type="text" id="qrut-input" name="qrut">
+      <button type="button" id="qrut-button">Consultar</button>
+    </div>
+</div>
 
-<h3>Instrucciones:</h3>
-<p>- Solicitar solo para fines laborales y bajo autorizacion de jefatura</p>
-<p>- La hora límite para enviar solicitudes es a las <b>16:00 del jueves previo</b> al periodo en cuestión (para ambos tipos: Fin de Semana y Semana) </p>
-<p>- Solicitudes enviadas fuera de este plazo <b>no serán procesadas</b></p>
+<div class=section-div>
+  <h3>Ingresar nueva solicitud</h3>
+  <h4>Instrucciones:</h4>
+  <p>- Solicitar solo para fines laborales y bajo autorizacion de jefatura</p>
+  <p>- La hora límite para enviar solicitudes es a las <b>16:00 del jueves previo</b> al periodo en cuestión (para ambos tipos: Fin de Semana y Semana) </p>
+<!--   <p>- Solicitudes enviadas fuera de este plazo <b>no serán procesadas</b></p> -->
 
-<p id="notice"><%= notice %></p>
-<%= button_to('Crear Solicitud', :salvoconductos_new, method: :get)%>
+  <p id="notice"><%= notice %></p>
+  <%= button_to('Crear Solicitud', :salvoconductos_new, method: :get)%>
+<!-- 
+  <h4> Periodos abiertos</h4>
+  <%Salvoconducto::PERIODOS.each do |period|%>
+  <%=period%><br/>
+  <%end%>
+  <h4> Periodos ya cerrados</h4>
+<p>P10 FIN DE SEMANA => [Sabado 17 abril a Domingo 18 abril] (2 dias) Hora Corte: Jueves 15 abril 16:00</p>
+<p>P11 SEMANA => [Lunes 19 abril a Viernes 23 abril] (5 dias) HHora Corte: Jueves 15 abril 16:00</p>
+-->
+</div>
 
-<h3> Periodos Vigentes</h3>
-<%Salvoconducto::PERIODOS.each do |period|%>
-<%=period%><br/>
-<%end%>
 
-<h3>Solicitudes Registradas</h3>
+<h3>Ùltimas Solicitudes Registradas</h3>
 <table id=salvos-main-table>
   <tr>
     <th>ID Solicitud</th>
@@ -47,7 +87,7 @@ body { font-family: Roboto, Arial, Helvetica, sans-serif; }
     <th>Creada En</th>
     <th>Estado</th>
   </tr>
-  <% Salvoconducto.order('id desc').limit(250).each do |scdt| %>
+  <% Salvoconducto.order('id desc').limit(300).each do |scdt| %>
     <tr>
       <td><%=scdt.id%></td>
       <td><%=scdt.periodo_str%></td>
