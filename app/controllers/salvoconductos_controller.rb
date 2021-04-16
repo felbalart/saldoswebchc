@@ -20,6 +20,12 @@ class SalvoconductosController < ApplicationController
     end
   end
 
+  def person_show
+    @rut = params[:rut].to_i
+    @worker = Worker.find_by(rut: @rut)
+    @salvoconductos = Salvoconducto.where(numdoc: @rut).order('id desc')
+  end
+
   def certificate
     @worker = Worker.find_by(rut: params[:rut])
     @date = Date.yesterday

@@ -89,6 +89,10 @@ def public_nombres;truncate_end(nombres, 3);end
 def public_apellido1;truncate_end(apellido1, 3);end
 def public_created_at;created_at.in_time_zone('Santiago').strftime("%d/%m/%Y %H:%M:%S");end
 
+def gurl1;"https://drive.google.com/open?id=#{patente}";end
+def gurl2;"https://drive.google.com/uc?export=download&id=#{patente}";end
+def gurl3;"https://drive.google.com/file/d/#{patente}/view";end
+
 # DEPRECATED
 def resume
   data = []

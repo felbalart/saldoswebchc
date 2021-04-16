@@ -1,0 +1,40 @@
+<style>
+  body { font-family: Roboto, Arial, Helvetica, sans-serif; }
+</style>
+<h2>Rut Consulta</h2>
+<p><%=@rut%></p>
+
+<% if !@worker && !@salvoconductos.present? %>
+ <p>No se encuentra información para el rut consultado</p>
+ <p>IMPORTANTE: ingrese rut SIN PUNTOS NI GUIONES NI DIGITO VERIFICADOR</p>
+ <p>CORRECTO: 12345678</p>
+ <p>INCORRECTO: 12.345.678</p>
+ <p>INCORRECTO: 12.345.678-9</p>
+ 
+
+<%else%>
+
+  <h2>Certificado Laboral de Contrato</h2>
+  <%if @worker%>
+    <%=link_to('Abrir Certificado', certificado_path(@rut), target: "_blank")%>
+  <%else%>
+    Certificado no disponible para este rut
+  <%end%>
+  <h2>Salvoconductos Emitidos</h2>
+  <%if @salvoconductos.present?%>
+    
+    <%@salvoconductos.each do |salvoc| %>
+
+      <%if salvoc.patente%>
+        <%=link_to("ID #{salvoc.id}: #{salvoc.periodo} [DESCARGAR]", salvoc.gurl1, target: "_blank")%>
+      <%else%>
+        ID <%=salvoc.id%>:<%=salvoc.periodo%> [DOCUMENTO NO DISPONIBLE EN LINEA]
+      <%end%>
+      <br/>
+      <br/>
+    <%end%>
+
+  <%else%>
+    No se encuentran solicitudes de salvoconducto para este rut
+  <%end%>
+<%end%>
