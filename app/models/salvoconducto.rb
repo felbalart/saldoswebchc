@@ -27,8 +27,8 @@ PERIODOS = [
 # 'P07 SEMANA => [Lunes 5 abril a Viernes 9 abril] (5 dias) Hora Corte: Viernes 2 abril 16:00']
 # 'P08 FIN DE SEMANA => [Sabado 10 abril a Domingo 11 abril] (2 dias) Hora Corte: Viernes 9 abril 16:00',
 # 'P09 SEMANA => [Lunes 12 abril a Viernes 16 abril] (5 dias) Hora Corte: Viernes 9 abril 16:00']
-'P10 FIN DE SEMANA => [Sabado 17 abril a Domingo 18 abril] (2 dias) Hora Corte: Jueves 15 abril 16:00',
-'P11 SEMANA => [Lunes 19 abril a Viernes 23 abril] (5 dias) HHora Corte: Jueves 15 abril 16:00',
+#'P10 FIN DE SEMANA => [Sabado 17 abril a Domingo 18 abril] (2 dias) Hora Corte: Jueves 15 abril 16:00',
+#'P11 SEMANA => [Lunes 19 abril a Viernes 23 abril] (5 dias) HHora Corte: Jueves 15 abril 16:00',
 'P12 FIN DE SEMANA => [Sabado 24 abril a Domingo 25 abril] (2 dias) Hora Corte: Jueves 22 abril 16:00',
 'P13 SEMANA => [Lunes 26 abril a Viernes 30 abril] (5 dias) Hora Corte: Jueves 22 abril 16:00',]
 
