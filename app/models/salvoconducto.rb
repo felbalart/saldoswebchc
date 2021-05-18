@@ -34,10 +34,12 @@ PERIODOS = [
 # 'S17 SEMANA => [Lunes 3 mayo a Viernes 7 mayo] (5 dias) Hora Corte: Jueves 29 abril 16:00',]
 # 'F17 FIN DE SEMANA => [Sabado 8 mayo a Domingo 9 mayo] (2 dias) Hora Corte: Jueves 6 mayo 16:00',
 # 'S18 SEMANA => [Lunes 10 mayo a Viernes 14 mayo] (5 dias) Hora Corte: Jueves 6 mayo 16:00',]
-  'S19 SEMANA => [Lunes 17 mayo a Viernes 21 mayo] (5 dias) Hora Corte: Jueves 13 mayo 16:00',]
+#  'S19 SEMANA => [Lunes 17 mayo a Viernes 21 mayo] (5 dias) Hora Corte: Jueves 13 mayo 16:00',]
+  'F20 FIN DE SEMANA => [Sabado 22 mayo a Domingo 23 mayo] (2 dias) Hora Corte: Jueves 20 mayo 16:00',
+  'S21 SEMANA => [Lunes 24 mayo a Viernes 28 mayo] (5 dias) Hora Corte: Jueves 20 mayo 16:00',]
   
 
-FECHAS_CORTE = { 'S19' => Time.new(2021, 5, 13, 16, 0, 0, '-04:00') }
+FECHAS_CORTE = { 'F20' => Time.new(2021, 5, 20, 16, 0, 0, '-04:00'), 'S21' => Time.new(2021, 5, 20, 16, 0, 0, '-04:00') }
 
 validates :nombres, :apellido1, :numdoc, :dv,
 :fechanac, :domicilio, :mail, :role, presence: true
