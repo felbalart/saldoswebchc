@@ -1,4 +1,5 @@
 <p><%=link_to 'Recomendados!', products_tag_path(tag: @tag || 'products'), class: 'group_link'%></p>
+<p><%=link_to 'En Tienda!', products_tag_path(tag: 'tienda'), class: 'group_link'%></p>
 <%gr_sgs.each do |gr, sgs|%>
 <p class=group_link_paragraph><%=link_to gr, products_tag_path(tag: @tag || 'products', group: gr[0..gr.index('(') - 2]), class: 'group_link'%></p>
 <%sgs.each do |sg|%>
