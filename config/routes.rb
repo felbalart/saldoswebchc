@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/salvoconductos/all', to: 'salvoconductos#all'
   get '/salvoconductos/:rut', to: 'salvoconductos#person_show'
   get '/certificado/:rut', to: 'salvoconductos#certificate', as: 'certificado'
-
+  get '/foto', to: 'fotos#image'
 
 
   get 'fork', to: 'fork#index'
