@@ -1,0 +1,2 @@
+class Duser < ApplicationRecord
+end
