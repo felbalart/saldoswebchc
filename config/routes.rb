@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/certificado/:rut', to: 'salvoconductos#certificate', as: 'certificado'
   get '/foto', to: 'foto#image'
 
+  get 'activofijo', to: 'fixed_assets#new'
 
   get 'fork', to: 'fork#index'
 

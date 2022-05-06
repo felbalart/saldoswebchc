@@ -1,0 +1,188 @@
+<style>
+  .salvoconducto_form {
+    margin-left: 20px; 
+  }
+  #error_explanation {
+    background-color: red;
+    max-width: 700px;
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+  .field {
+    width: 500px;
+  }
+  .field input {
+    width: 100%;
+  }
+
+  .field-label {
+
+  }
+  .field-helper {
+    margin-left: 10px;
+    color: blue;
+    font-size: 12px;
+  }
+  .short-field input {
+    width: 100px;
+    margin-top: 2px;
+  }
+</style>
+<div class=salvoconducto_form>
+<%=# form_with(model: salvoconducto, local: true) do |form|
+ %>
+ <%= form_with url: "/search", method: :get do |form| %>
+  <% if salvoconducto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= salvoconducto.errors.count %> errores impidieron registrar su solicitud:</h2>
+
+      <ul>
+      <% salvoconducto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<h2>1. DATOS PERSONALES</h2>
+
+<div class="field"><span class="field-label">Nombres</span><span class="field-helper"></span>
+  <%= form.text_field :names %></div><br/>
+<div class="field"><%= form.label('apellido1_')%><%= form.text_field :last_name1 %></div><br/>
+<div class="field"><%= form.label('apellido2_')%><%= form.text_field :last_name2 %></div><br/>
+<div class="field"><span class="field-label">RUT</span><span class="field-helper">Ej. 12.345.678-K</span><%= form.text_field :rut %></div>
+<br/>
+<div class="field"><%= form.label('Lugar de Trabajo_')%><%= form.select(:workplace, ['Escoger una opción...'] + Device::LUGAR_TRABAJO) %></div><br/>
+
+<div class="field"><%= form.label('email_')%><%= form.text_field :email %></div><br/>
+
+<div class="field"><span class="field-label">Núm Teléfono Móvil</span><span class="field-helper">Ej. +569 12345678</span><%= form.text_field :num_movil %></div><br/>
+
+
+
+<div class="field"><span class="field-label">Este número y linea (tarjeta SIM) es propiedad de:</span>
+  <br>
+  <%= form.radio_button(:mobile_line_owner, :company_line, style: 'width: 10px;')%>
+      <label for="b">La Empresa (plan corporativo)</label>
+  <%= form.radio_button(:mobile_line_owner, :personal_line, style: 'width: 10px;')%>
+  <label for="d">Mia personal</label>
+</div><br/>
+
+<div class="field" style="width: 700px;"><span class="field-label">Mi equipo (teléfono movil) es propiedad de:</span>
+  <br>
+  <%= form.radio_button(:mobile_device_owner, :company_device, style: 'width: 10px;')%>
+      <label for="b">La Empresa</label>
+  <%= form.radio_button(:mobile_device_owner, :personal_device, style: 'width: 10px;')%>
+  <label for="d">Mio personal</label>
+  <%= form.radio_button(:mobile_device_owner, :two_devices, style: 'width: 10px;')%>
+  <label for="d">Tengo 2, uno de la Empresa y otro personal</label>
+</div><br/>
+
+<div class="field"><span class="field-label">Si tiene algun anexo, o número telefono fijo, u otro número de telefono movil secundario, favor ingresar:</span><span class="field-helper">Ej. +562 6200508 o 208</span>
+<%= form.text_field :fixed_device_num%></div><br/>
+
+<h2>2. DISPOSITIVOS ELECTRÓNICOS</h2>
+<span>
+  Ingrese detalle de dispositivos que ud tiene o usa <b>que son propiedad de la empresa</b>.
+  <br/>
+  Ingresar tanto los de uso <b>individual</b>, como también los de uso <b>grupal</b> de su área (es decir, todos los que <b>ud use</b> regularmente en su trabajo)
+</span>
+<h3>2.1 Teléfonos móviles</h3>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :mobile1_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :mobile1_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :mobile1_color %></span>
+<br/>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :mobile2_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :mobile2_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :mobile2_color %></span>
+<br/>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :mobile3_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :mobile3_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :mobile3_color %></span>
+<br/>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :mobile4_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :mobile4_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :mobile4_color %></span>
+
+<h3>2.2 Computadores</h3>
+<div style="border: 1px solid; width: 500px; padding: 2px;"><div>Instructivo Tipos de computadores:</div>
+<%=image_tag '/tipos_pc.png', width: '500px', style: ''%>
+</div>
+<br/>
+<div>Modelo:  Si no puede determinar el modelo exacto, déjelo en blanco</div>
+<br/>
+<span class="short-field"><%= form.label('Tipo_')%><%= form.select(:pc1_type, ['Escoger una opción...'] + Device::TIPOS_COMPUTADORES) %></span>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :pc1_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :pc1_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :pc1_color %></span>
+<br/>
+<span class="short-field"><%= form.label('Tipo_')%><%= form.select(:pc2_type, ['Escoger una opción...'] + Device::TIPOS_COMPUTADORES) %></span>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :pc2_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :pc2_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :pc2_color %></span>
+<br/>
+<span class="short-field"><%= form.label('Tipo_')%><%= form.select(:pc3_type, ['Escoger una opción...'] + Device::TIPOS_COMPUTADORES) %></span>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :pc3_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :pc3_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :pc3_color %></span>
+<br/>
+<span class="short-field"><%= form.label('Tipo_')%><%= form.select(:pc4_type, ['Escoger una opción...'] + Device::TIPOS_COMPUTADORES) %></span>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :pc4_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :pc4_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :pc4_color %></span>
+<br/>
+
+<h3>2.3 Monitores (Pantallas)</h3>
+<span>NOTA: Si tiene un All In One, esto es PC con pantalla integrada. Esta NO la considere </span>
+<span>(acá solo pantallas aparte)</span>
+<br>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :monitor1_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :monitor1_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :monitor1_color %></span>
+<br>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :monitor2_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :monitor2_model %></span>
+<span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :monitor2_color %></span>
+
+<h3>2.4 Impresoras (Grupal en Red o Individual USB)</h3>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :printer1_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :printer1_model %></span>
+<span>Tipo:</span>
+<%= form.radio_button(:printer1_type, :individual_usb, style: 'width: 10px;')%><label for="b">Individual USB</label>
+<%= form.radio_button(:printer1_type,:grupal_red, style: 'width: 10px;')%><label for="d">Grupal en Red</label>
+<br/>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :printer2_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :printer2_model %></span>
+<span>Tipo:</span>
+<%= form.radio_button(:printer2_type, :individual_usb, style: 'width: 10px;')%><label for="b">Individual USB</label>
+<%= form.radio_button(:printer2_type,:grupal_red, style: 'width: 10px;')%><label for="d">Grupal en Red</label>
+<br/>
+<span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :printer3_brand %></span>
+<span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :printer3_model %></span>
+<span>Tipo:</span>
+<%= form.radio_button(:printer3_type, :individual_usb, style: 'width: 10px;')%><label for="b">Individual USB</label>
+<%= form.radio_button(:printer3_type,:grupal_red, style: 'width: 10px;')%><label for="d">Grupal en Red</label>
+<h3>2.5 Otros</h3>
+<span class="field-helper">
+  Dispositivos de otro tipo que los registrados arriba
+</span>
+<br/>
+<br/>
+<%= form.text_field :other1 %><br/>
+<%= form.text_field :other2 %><br/>
+<%= form.text_field :other3 %><br/>
+<%= form.text_field :other4 %><br/>
+<br/>
+<br/>
+  <div class="actions">
+    <%= form.submit('Enviar Formulario')%>
+    <br/>
+    <br/>
+
+  </div>
+
+<% end %>
+<%= #button_to('Cancelar', :salvoconductos, method: :get)
+%>
+</div>
