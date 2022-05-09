@@ -53,6 +53,8 @@
 <div class="field"><%= form.label('apellido2_')%><%= form.text_field :last_name2 %></div><br/>
 <div class="field"><span class="field-label">RUT</span><span class="field-helper">Ej. 12.345.678-K</span><%= form.text_field :rut %></div>
 <br/>
+<div class="field"><span class="field-label">Área</span><span class="field-helper">(...de la empresa en que ud trabaja)</span><%= form.text_field :area %></div>
+<br/>
 <div class="field"><%= form.label('Lugar de Trabajo_')%><%= form.select(:workplace, ['Escoger una opción...'] + Device::LUGAR_TRABAJO) %></div><br/>
 
 <div class="field"><%= form.label('email_')%><%= form.text_field :email %></div><br/>

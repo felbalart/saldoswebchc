@@ -4,6 +4,26 @@ class Duser < ApplicationRecord
   def u3l
     last_name1.downcase.strip[0..2]
   end
+
+  def human_mobile_line_owner
+  	case mobile_line_owner
+  	when 'company_line'
+  		'Empresa'
+  	when 'personal_line'
+  		'Personal'
+  	end
+  end
+
+  def human_mobile_device_owner
+      case mobile_device_owner
+      when 'company_device'
+        'Empresa'
+      when 'personal_device'
+        'Personal'
+      when 'two_devices'
+        '2 Dispositivos'
+      end
+  end
 end
 
 # == Schema Information
@@ -23,4 +43,5 @@ end
 #  fixed_device_num    :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  area                :string
 #

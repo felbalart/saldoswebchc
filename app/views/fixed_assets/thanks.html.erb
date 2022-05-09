@@ -41,11 +41,12 @@ body { font-family: Roboto, Arial, Helvetica, sans-serif; }
 <tr><th>Apellido1</th><td><%=@duser.last_name1%></td></tr>
 <tr><th>Apellido2</th><td><%=@duser.last_name2%></td></tr>
 <tr><th>Rut</th><td><%=@duser.rut%></td></tr>
+<tr><th>Área</th><td><%=@duser.area%></td></tr>
 <tr><th>Lugar de Trabajo</th><td><%=@duser.workplace%></td></tr>
 <tr><th>Email</th><td><%=@duser.email%></td></tr>
 <tr><th># Movil</th><td><%=@duser.mobile_phone_num%></td></tr>
-<tr><th>Propiedad Linea</th><td><%=@duser.mobile_line_owner%></td></tr>
-<tr><th>Propiedad Dispositivo</th><td><%=@duser.mobile_device_owner%></td></tr>
+<tr><th>Propiedad Linea</th><td><%=@duser.human_mobile_line_owner%></td></tr>
+<tr><th>Propiedad Dispositivo</th><td><%=@duser.human_mobile_device_owner%></td></tr>
 <tr><th># Fijo</th><td><%=@duser.fixed_device_num%></td></tr>
 <tr><th>Registrado En</th><td><%=@duser.created_at.in_time_zone('America/Santiago').strftime('%e %b %Y %H:%M:%S%p')%></td></tr>
 </table>
