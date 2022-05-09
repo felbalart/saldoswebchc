@@ -31,7 +31,7 @@
 <div class=salvoconducto_form>
 <%=# form_with(model: salvoconducto, local: true) do |form|
  %>
- <%= form_with url: "/search", method: :get do |form| %>
+ <%= form_with url: "activofijo" do |form| %>
   <% if salvoconducto.errors.any? %>
     <div id="error_explanation">
       <h2><%= salvoconducto.errors.count %> errores impidieron registrar su solicitud:</h2>
@@ -57,7 +57,8 @@
 
 <div class="field"><%= form.label('email_')%><%= form.text_field :email %></div><br/>
 
-<div class="field"><span class="field-label">Núm Teléfono Móvil</span><span class="field-helper">Ej. +569 12345678</span><%= form.text_field :num_movil %></div><br/>
+<div class="field"><span class="field-label">Núm Teléfono Móvil</span><span class="field-helper">Ej. +569 12345678</span>
+<%= form.text_field :mobile_phone_num %></div><br/>
 
 
 
@@ -134,9 +135,10 @@
 <br/>
 
 <h3>2.3 Monitores (Pantallas)</h3>
-<span>NOTA: Si tiene un All In One, esto es PC con pantalla integrada. Esta NO la considere </span>
-<span>(acá solo pantallas aparte)</span>
-<br>
+<span class="field-helper">NOTA: Si tiene un All In One (es decir PC + pantalla integrada) Esta pantalla NO la considere.
+(acá solo pantallas aparte)</span>
+<br/>
+<br/>
 <span class="short-field"><span class="field-label"> Marca: </span><%= form.text_field :monitor1_brand %></span>
 <span class="short-field"><span class="field-label"> Modelo: </span><%= form.text_field :monitor1_model %></span>
 <span class="short-field"><span class="field-label"> Color: </span><%= form.text_field :monitor1_color %></span>

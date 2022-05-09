@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/foto', to: 'foto#image'
 
   get 'activofijo', to: 'fixed_assets#new'
+  post 'activofijo', to: 'fixed_assets#create'
+  get 'activofijo/:user', to: 'fixed_assets#thanks', as: 'thanks'
 
   get 'fork', to: 'fork#index'
 

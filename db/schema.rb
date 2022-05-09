@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_041124) do
+ActiveRecord::Schema.define(version: 2022_05_06_175027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,35 @@ ActiveRecord::Schema.define(version: 2021_04_06_041124) do
   create_table "components", id: false, force: :cascade do |t|
     t.integer "father_id", null: false
     t.integer "child_id", null: false
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string "name"
+    t.bigint "duser_id"
+    t.string "devtype"
+    t.string "subtype"
+    t.string "brand"
+    t.string "model"
+    t.string "color"
+    t.string "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["duser_id"], name: "index_devices_on_duser_id"
+  end
+
+  create_table "dusers", force: :cascade do |t|
+    t.string "names"
+    t.string "last_name1"
+    t.string "last_name2"
+    t.string "rut"
+    t.string "workplace"
+    t.string "email"
+    t.string "mobile_phone_num"
+    t.string "mobile_line_owner"
+    t.string "mobile_device_owner"
+    t.string "fixed_device_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -125,6 +154,7 @@ ActiveRecord::Schema.define(version: 2021_04_06_041124) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "devices", "dusers"
   add_foreign_key "substitutes", "products"
   add_foreign_key "tags", "products"
 end
