@@ -1,0 +1,57 @@
+<br/><br/><br/><br/>
+<p id="notice"><%= notice %></p>
+
+<h1>Usuarios</h1>
+<style>
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+</style>
+
+
+<table>
+  <thead>
+    <tr>
+<th>last_name1</th>
+<th>last_name2</th>
+<th>names</th>
+<th>duser id</th>
+<th>rut</th>
+<th>workplace</th>
+<th>email</th>
+<th>mobile_phone_num</th>
+<th>mobile_line_owner</th>
+<th>mobile_device_owner</th>
+<th>fixed_device_num</th>
+<th>created_at</th>
+<th>updated_at</th>
+<th>area</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dusers.each do |duser| %>
+      <tr>
+<td><%=duser.last_name1%></td>
+<td><%=duser.last_name2%></td>
+<td><%=duser.names%></td>
+<td><%=duser.id%></td>
+<td><%=duser.rut%></td>
+<td><%=duser.workplace%></td>
+<td><%=duser.email_ofusc%></td>
+<td><%=duser.mobile_phone_num_ofusc%></td>
+<td><%=duser.mobile_line_owner%></td>
+<td><%=duser.mobile_device_owner%></td>
+<td><%=duser.fixed_device_num_ofusc%></td>
+<td><%=duser.created_at%></td>
+<td><%=duser.updated_at%></td>
+<td><%=duser.area%></td>
+
+        <td><%= link_to 'Ver', duser %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

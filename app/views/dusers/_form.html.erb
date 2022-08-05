@@ -1,0 +1,24 @@
+<%= form_with(model: duser, local: true) do |form| %>
+  <% if duser.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(duser.errors.count, "error") %> prohibited this duser from being saved:</h2>
+
+      <ul>
+      <% duser.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+  <p>
+    name__ <%= form.text_field :last_name %>
+  </p>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

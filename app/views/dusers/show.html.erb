@@ -1,0 +1,77 @@
+<br/><br/><br/><br/>
+
+<h1>Ver Usuario:</h1>
+<p id="notice"><%= notice %></p>
+
+
+<b>id:</b> <%=@duser.id%><br/>
+<b>names:</b> <%=@duser.names%><br/>
+<b>last_name1:</b> <%=@duser.last_name1%><br/>
+<b>last_name2:</b> <%=@duser.last_name2%><br/>
+<b>rut:</b> <%=@duser.rut%><br/>
+<b>workplace:</b> <%=@duser.workplace%><br/>
+<b>email:</b> <%=@duser.email_ofusc%><br/>
+<b>mobile_phone_num:</b> <%=@duser.mobile_phone_num_ofusc%><br/>
+<b>mobile_line_owner:</b> <%=@duser.mobile_line_owner%><br/>
+<b>mobile_device_owner:</b> <%=@duser.mobile_device_owner%><br/>
+<b>fixed_device_num:</b> <%=@duser.fixed_device_num_ofusc%><br/>
+<b>created_at:</b> <%=@duser.created_at%><br/>
+<b>updated_at:</b> <%=@duser.updated_at%><br/>
+<b>area:</b> <%=@duser.area%><br/>
+
+<h2>Dispositivos del usuario</h2>
+
+
+
+<style>
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+</style>
+
+
+<table>
+  <thead>
+    <tr>
+      
+<th>name</th>
+<th>devtype</th>
+<th>subtype</th>
+<th>brand</th>
+<th>model</th>
+<th>color</th>
+<th>comments</th>
+<th>created_at</th>
+<th>updated_at</th>
+<th>duser_id</th>
+<th>duser</th>
+</tr>
+  </thead>
+
+  <tbody>
+    <% @duser.devices.each do |device| %>
+      <tr>
+<td><%=device.name%></td>
+<td><%=device.devtype%></td>
+<td><%=device.subtype%></td>
+<td><%=device.brand%></td>
+<td><%=device.model%></td>
+<td><%=device.color%></td>
+<td><%=device.comments%></td>
+<td><%=device.created_at%></td>
+<td><%=device.updated_at%></td>
+<td><%=device.duser_id%></td>
+<td><%=device.duser.alias%></td>
+
+        <td><%= link_to 'Show', device %></td>
+        <td><%= link_to 'Edit', edit_device_path(device) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<%= link_to 'Back', dusers_path %>

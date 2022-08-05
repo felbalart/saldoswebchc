@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: 'application#home'
+  resources :devices
+  resources :dusers
 
   get '/salvoconductos', to: 'salvoconductos#index'
   get '/salvoconductos/new', to: 'salvoconductos#new'

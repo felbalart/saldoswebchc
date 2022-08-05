@@ -1,0 +1,58 @@
+
+<br><br><br><br>
+<p id="notice"><%= notice %></p>
+
+<h1>Devices</h1>
+
+
+<style>
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+</style>
+
+
+<table>
+  <thead>
+    <tr>
+      
+<th>name</th>
+<th>devtype</th>
+<th>subtype</th>
+<th>brand</th>
+<th>model</th>
+<th>color</th>
+<th>comments</th>
+<th>created_at</th>
+<th>updated_at</th>
+<th>duser_id</th>
+<th>duser</th>
+</tr>
+  </thead>
+
+  <tbody>
+    <% @devices.each do |device| %>
+      <tr>
+<td><%=device.name%></td>
+<td><%=device.devtype%></td>
+<td><%=device.subtype%></td>
+<td><%=device.brand%></td>
+<td><%=device.model%></td>
+<td><%=device.color%></td>
+<td><%=device.comments%></td>
+<td><%=device.created_at%></td>
+<td><%=device.updated_at%></td>
+<td><%=device.duser_id%></td>
+<td><%=device.duser.alias%></td>
+
+        <td><%= link_to 'Show', device %></td>
+        <td><%= link_to 'Edit', edit_device_path(device) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Device', new_device_path %>

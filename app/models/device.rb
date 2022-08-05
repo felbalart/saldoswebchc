@@ -30,22 +30,28 @@ class Device < ApplicationRecord
     'Torre'
     ]
 
-    def hdevtype
-      case devtype
-      when 'mobile'
-        'Móvil'
-      when 'pc'
-        'PC'
-      when 'monitor'
-        'Monitor'
-      when 'printer'
-        'Impresora'
-      when 'other'
-        'Otro'
-      else
-        nil
-      end
+
+  def image_link
+    base = ENV['WEB_CHC_BASE_URL']
+    "#{base}/fiaf/#{name}"
+  end
+
+  def hdevtype
+    case devtype
+    when 'mobile'
+      'Móvil'
+    when 'pc'
+      'PC'
+    when 'monitor'
+      'Monitor'
+    when 'printer'
+      'Impresora'
+    when 'other'
+      'Otro'
+    else
+      nil
     end
+  end
 end
 
 # == Schema Information
@@ -63,6 +69,7 @@ end
 #  comments   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  log        :string
 #
 # Indexes
 #

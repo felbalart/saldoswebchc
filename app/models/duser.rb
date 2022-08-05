@@ -5,6 +5,20 @@ class Duser < ApplicationRecord
     last_name1.downcase.strip[0..2]
   end
 
+  def alias
+    email&.split('@')&.first
+  end
+
+def email_ofusc
+  ofuscate email
+end
+def mobile_phone_num_ofusc
+  ofuscate mobile_phone_num
+end
+def fixed_device_num_ofusc
+  ofuscate fixed_device_num
+end
+
   def human_mobile_line_owner
   	case mobile_line_owner
   	when 'company_line'
@@ -24,6 +38,24 @@ class Duser < ApplicationRecord
         '2 Dispositivos'
       end
   end
+
+  def ofuscate str
+    return str if str.to_s.length < 4
+    str[0..3] + (['*']*(str.length - 8)).join + str[-4..-1]
+  end
+
+  def ofuscate_end(str, show_n)
+    str = str.to_s
+    return str if str.length < show_n
+    str[0...show_n] + (['*']*(str.length - show_n)).join
+  end
+
+  def truncate_end(str, show_n)
+    str = str.to_s
+    return str if str.length < show_n
+    str[0...show_n] + '...'
+  end
+
 end
 
 # == Schema Information

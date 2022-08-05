@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<br><br><br><br><br>
+name: <%=@device.name%><br>
+duser_id: <%=@device.duser_id%><br>
+devtype: <%=@device.devtype%><br>
+subtype: <%=@device.subtype%><br>
+brand: <%=@device.brand%><br>
+model: <%=@device.model%><br>
+color: <%=@device.color%><br>
+comments: <%=@device.comments%><br>
+created_at: <%=@device.created_at%><br>
+updated_at: <%=@device.updated_at%><br>
+log: <%=@device.log%><br>
+
+
+<%=image_tag @device.image_link, width: '500px', style: 'padding: 1px 27px 12px 125px'%>
+
+<br/>
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>
